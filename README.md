@@ -8,5 +8,5 @@ See [github.com/ebraminio/awesome-qsharp](https://github.com/ebraminio/awesome-q
 
 ## TODOs
 
-* When we copy the quantum libraries we flatten the directory structure, which breaks namespaces and may have drop files with the same name in different directories. We should probably preserve the internal directory structure instead.
+* When we copy the quantum libraries we flatten the directory structure, which breaks namespaces and may drop files with the same name in different directories. We should probably preserve the internal directory structure instead.
 * Add scripts to collect statistics on Q# code (e.g., how often are different language features are used?).
