@@ -3,8 +3,7 @@
 
 namespace Microsoft.Quantum.Arithmetic {
     /// # Summary
-    /// Represents a register of qubits encoding a fixed-point number. Consists of an integer that is equal to the number of
-    /// qubits to the left of the binary point, i.e., qubits of weight greater
-    /// than or equal to 1, and a quantum register.
-    newtype FixedPoint = (Int, Qubit[]);
+    /// Type of a signed integer stored in little endian (see LittleEndian).
+    /// Negative numbers are stored using two's complement.
+    newtype SignedLittleEndian = LittleEndian;
 }

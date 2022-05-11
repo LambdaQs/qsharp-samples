@@ -1,9 +1,11 @@
 [submodule "submodules/QuantumLibraries"]
 	path = submodules/QuantumLibraries
 	url = https://github.com/Microsoft/QuantumLibraries
+	branch = main
 [submodule "submodules/QuantumKatas"]
 	path = submodules/QuantumKatas
 	url = https://github.com/Microsoft/QuantumKatas/
+	branch = main
 [submodule "submodules/silq"]
 	path = submodules/silq
 	url = https://github.com/eth-sri/silq
