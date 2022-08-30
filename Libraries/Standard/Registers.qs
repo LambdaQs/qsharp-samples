@@ -1,99 +1,29 @@
-﻿// Copyright (c) Microsoft Corporation.
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace Microsoft.Quantum.Measurement {
+namespace Microsoft.Quantum.Canon {
     open Microsoft.Quantum.Intrinsic;
-    open Microsoft.Quantum.Canon;
-    open Microsoft.Quantum.Arrays;
 
     /// # Summary
-    /// Measures the given Pauli operator using an explicit scratch
-    /// qubit to perform the measurement.
-    ///
-    /// # Input
-    /// ## pauli
-    /// A multi-qubit Pauli operator specified as an array of
-    /// single-qubit Pauli operators.
-    /// ## target
-    /// Qubit register to be measured.
-    ///
-    /// # Output
-    /// The result of measuring the given Pauli operator on
-    /// the `target` register.
-    operation MeasureWithScratch (pauli : Pauli[], target : Qubit[]) : Result {
-        use scratch = Qubit();
-        H(scratch);
-
-        for idxPauli in IndexRange(pauli) {
-            let P = pauli[idxPauli];
-            let src = target[idxPauli];
-
-            if (P == PauliX) {
-                Controlled X([scratch], src);
-            } elif (P == PauliY) {
-                Controlled Y([scratch], src);
-            } elif (P == PauliZ) {
-                Controlled Z([scratch], src);
-            }
-        }
-
-        H(scratch);
-        return MResetZ(scratch);
-    }
-
-    /// # Summary
-    /// Given an array of multi-qubit Pauli operators, measures each using a specified measurement
-    /// gadget, then returns the array of results.
-    ///
-    /// # Input
-    /// ## paulis
-    /// Array of multi-qubit Pauli operators to measure.
-    /// ## target
-    /// Register on which to measure the given operators.
-    /// ## gadget
-    /// Operation which performs the measurement of a given multi-qubit operator.
-    ///
-    /// # Output
-    /// The array of results obtained from measuring each element of `paulis`
-    /// on `target`.
-    operation MeasurePaulis (paulis : Pauli[][], target : Qubit[], gadget : ((Pauli[], Qubit[]) => Result)) : Result[] {
-        return ForEach(gadget(_, target), paulis);
-    }
-
-    /// # Summary
-    /// Measures each qubit in a given array in the standard basis.
-    /// # Input
-    /// ## targets
-    /// An array of qubits to be measured.
-    /// # Output
-    /// An array of measurement results.
-    ///
-    /// # Remarks
-    /// This operation does not reset the measured qubits to the |0⟩ state, 
-    /// leaving them in the state that corresponds to the measurement results.
-    operation MultiM (targets : Qubit[]) : Result[] {
-        return ForEach(M, targets);
-    }
-
-    /// # Summary
-    /// Jointly measures a register of qubits in the Pauli Z basis.
-    ///
-    /// # Description
-    /// Measures a register of qubits in the $Z \otimes Z \otimes \cdots \otimes Z$
-    /// basis, representing the parity of the entire register.
+    /// Uses SWAP gates to Reversed the order of the qubits in
+    /// a register.
     ///
     /// # Input
     /// ## register
-    /// The register to be measured.
-    ///
-    /// # Output
-    /// The result of measuring $Z \otimes Z \otimes \cdots \otimes Z$.
-    ///
-    /// # Remarks
-    /// This operation does not reset the measured qubits to the |0⟩ state, 
-    /// leaving them in the state that corresponds to the measurement result.
-    operation MeasureAllZ (register : Qubit[]) : Result {
-        return Measure(ConstantArray(Length(register), PauliZ), register);
+    /// The qubits order of which should be reversed using SWAP gates
+    operation SwapReverseRegister (register : Qubit[]) : Unit {
+        body (...) {
+            let totalQubits = Length(register);
+            let halfTotal = totalQubits / 2;
+
+            for i in 0 .. halfTotal - 1 {
+                SWAP(register[i], register[(totalQubits - i) - 1]);
+            }
+        }
+
+        adjoint self;
+        controlled distribute;
+        controlled adjoint self;
     }
 
 }

@@ -51,6 +51,19 @@ namespace Microsoft.Quantum.Tests {
         NearEqualityFactD(PrepareAsSignedAndMeasure(0b1111, qsFxP), -0.25);
     }
 
+    @Test("QuantumSimulator")
+    operation FixedPointConversionTest() : Unit {
+        AllEqualityFactB(FixedPointAsBoolArray(2, 2,  1.25), [true, false, true, false], "FixedPointAsBoolArray failed");
+        AllEqualityFactB(FixedPointAsBoolArray(2, 2,  1.3), [true, false, true, false], "FixedPointAsBoolArray failed");
+        AllEqualityFactB(FixedPointAsBoolArray(2, 2, -1.75), [true, false, false, true], "FixedPointAsBoolArray failed");
+
+        NearEqualityFactD(BoolArrayAsFixedPoint(2, [true, false, true, false]), 1.25);
+        NearEqualityFactD(BoolArrayAsFixedPoint(2, [true, false, false, true]), -1.75);
+
+        NearEqualityFactD(DoubleAsFixedPoint(2, 2, 1.3), 1.25);
+        NearEqualityFactD(DoubleAsFixedPoint(2, 2, 0.8), 0.75);
+    }
+
     @Test("ToffoliSimulator")
     operation CompareGreaterThanFxPTest() : Unit {
         for a in [1.2, 3.9, 3.14159, -0.6, -4.5, -3.1931, 0.0] {
@@ -419,6 +432,18 @@ namespace Microsoft.Quantum.Tests {
                         ResetAll(xs + ys + ctrls);
                     }
                 }
+            }
+        }
+    }
+
+    @Test("QuantumSimulator")
+    operation TestFixedPointLimits() : Unit {
+        for numBits in 1..6 {
+            for integerBits in 0..numBits {
+                let fractionalBits = numBits - integerBits;
+
+                NearEqualityFactD(SmallestFixedPoint(integerBits, fractionalBits), BoolArrayAsFixedPoint(integerBits, [false, size = numBits] w/ numBits - 1 <- true));
+                NearEqualityFactD(LargestFixedPoint(integerBits, fractionalBits), BoolArrayAsFixedPoint(integerBits, [true, size = numBits] w/ numBits - 1 <- false));
             }
         }
     }
