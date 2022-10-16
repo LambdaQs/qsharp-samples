@@ -696,7 +696,7 @@ namespace Microsoft.Quantum.Math {
         if norm == 0.0 {
             return array;
         } else {
-            mutable output = [0.0, size=nElements];
+            mutable output = [0.0, size = nElements];
 
             for idx in 0 .. nElements - 1 {
                 set output w/= idx <- array[idx] / norm;

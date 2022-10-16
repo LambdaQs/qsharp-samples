@@ -1,0 +1,13 @@
+diff --git a/Libraries/Standard/Functions.qs b/Libraries/Standard/Functions.qs
+index ab1e166..d535171 100644
+--- a/Libraries/Standard/Functions.qs
++++ b/Libraries/Standard/Functions.qs
+@@ -696,7 +696,7 @@ namespace Microsoft.Quantum.Math {
+         if norm == 0.0 {
+             return array;
+         } else {
+-            mutable output = [0.0, size=nElements];
++            mutable output = [0.0, size = nElements];
+
+             for idx in 0 .. nElements - 1 {
+                 set output w/= idx <- array[idx] / norm;
