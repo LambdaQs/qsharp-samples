@@ -5,7 +5,7 @@ namespace Microsoft.Quantum.Canon {
     open Microsoft.Quantum.Diagnostics;
     open Microsoft.Quantum.Arrays;
     open Microsoft.Quantum.Intrinsic;
-    
+
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Helpers to repeatedly apply operations over qubit arrays
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ namespace Microsoft.Quantum.Canon {
     /// ## listOfOps
     /// List of ops, each taking a 'T array, to be applied. They are applied sequentially, lowest index first.
     /// ## targets
-    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing 
+    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing
     /// the indices to be used.
     /// ## register
     /// Qubit register to be acted upon.
@@ -51,7 +51,7 @@ namespace Microsoft.Quantum.Canon {
     /// List of ops, each taking a 'T array, to be applied. They are applied sequentially, lowest index first.
     /// Each must have an adjoint functor
     /// ## targets
-    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing 
+    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing
     /// the indices to be used.
     /// ## register
     /// Qubit register to be acted upon.
@@ -85,7 +85,7 @@ namespace Microsoft.Quantum.Canon {
     /// List of ops, each taking a 'T array, to be applied. They are applied sequentially, lowest index first.
     /// Each must have a Controlled functor
     /// ## targets
-    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing 
+    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing
     /// the indices to be used.
     /// ## register
     /// Qubit register to be acted upon.
@@ -119,7 +119,7 @@ namespace Microsoft.Quantum.Canon {
     /// List of ops, each taking a 'T array, to be applied. They are applied sequentially, lowest index first.
     /// Each must have both an Adjoint and Controlled functor.
     /// ## targets
-    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing 
+    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing
     /// the indices to be used.
     /// ## register
     /// Qubit register to be acted upon.
@@ -152,14 +152,14 @@ namespace Microsoft.Quantum.Canon {
     /// ## op
     /// An operation to be applied multiple times on the qubit register
     /// ## targets
-    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing 
+    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing
     /// the qubits to be used.
     /// ## register
     /// Qubit register to be acted upon.
     ///
     /// # See Also
     /// - Microsoft.Quantum.Canon.ApplySeriesOfOps
-    operation ApplyOpRepeatedlyOver(op : (Qubit[] => Unit), targets : Int[][], register : Qubit[]) : Unit 
+    operation ApplyOpRepeatedlyOver(op : (Qubit[] => Unit), targets : Int[][], register : Qubit[]) : Unit
     {
         for target in targets {
             if (Length(target) > Length(register)) {
@@ -177,7 +177,7 @@ namespace Microsoft.Quantum.Canon {
     /// ## op
     /// An operation to be applied multiple times on the qubit register
     /// ## targets
-    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing 
+    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing
     /// the qubits to be used.
     /// ## register
     /// Qubit register to be acted upon.
@@ -187,7 +187,7 @@ namespace Microsoft.Quantum.Canon {
     operation ApplyOpRepeatedlyOverA(op : (Qubit[] => Unit is Adj), targets : Int[][], register : Qubit[]) : Unit is Adj
     {
         for target in targets {
-            if (Length(target) > Length(register)) 
+            if (Length(target) > Length(register))
             {
                 fail "Too many targets!";
             }
@@ -203,7 +203,7 @@ namespace Microsoft.Quantum.Canon {
     /// ## op
     /// An operation to be applied multiple times on the qubit register
     /// ## targets
-    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing 
+    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing
     /// the qubits to be used.
     /// ## register
     /// Qubit register to be acted upon.
@@ -228,7 +228,7 @@ namespace Microsoft.Quantum.Canon {
     /// ## op
     /// An operation to be applied multiple times on the qubit register
     /// ## targets
-    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing 
+    /// Nested arrays describing the targets of the op. Each array should contain a list of ints describing
     /// the qubits to be used.
     /// ## register
     /// Qubit register to be acted upon.

@@ -112,7 +112,7 @@ namespace Microsoft.Quantum.Tests {
                 GeneratorIndex(([0],[cosSquared]),[0]),
                 GeneratorIndex(([1],[1.0-cosSquared]),[0])
             ];
-            
+
             let generatorSystem = GeneratorSystem(2, LookupFunction(genIndices));
 
             let (norm, LCU) = PauliBlockEncoding(generatorSystem);

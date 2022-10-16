@@ -11,19 +11,19 @@ namespace Microsoft.Quantum.Math {
     operation RandomIntPow2 (maxBits : Int) : Int {
         return DrawRandomInt(0, 2^maxBits - 1);
     }
-    
+
     @Deprecated("Microsoft.Quantum.Random.DrawRandomInt")
     operation RandomInt (maxInt : Int) : Int {
         return DrawRandomInt(0, maxInt - 1);
     }
-    
-    
+
+
     @Deprecated("Microsoft.Quantum.Random.DrawRandomDouble")
     operation RandomReal (bitsRandom : Int) : Double {
         if (bitsRandom < 1) {
             fail $"Number of random bits must be greater than 0.";
         }
-        
+
         return IntAsDouble(RandomIntPow2(bitsRandom)) / PowD(2.0, IntAsDouble(bitsRandom));
     }
 
@@ -33,5 +33,3 @@ namespace Microsoft.Quantum.Math {
     }
 
 }
-
-

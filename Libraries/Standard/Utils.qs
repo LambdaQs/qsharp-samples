@@ -28,8 +28,8 @@ namespace Microsoft.Quantum.ErrorCorrection {
         let results = MeasurePaulis(stabilizerGroup, logicalRegister!, gadget);
         return Syndrome(results);
     }
-    
-    
+
+
     /// # Summary
     /// Performs a single round of error correction by a quantum code
     /// described by a `QECC` type.
@@ -56,8 +56,8 @@ namespace Microsoft.Quantum.ErrorCorrection {
         let recoveryOp = fn!(syndrome);
         ApplyPauli(recoveryOp, logicalRegister!);
     }
-    
-    
+
+
     /// # Summary
     /// Performs a single round of error correction by a quantum code
     /// described by a `CSS` type.
@@ -92,14 +92,14 @@ namespace Microsoft.Quantum.ErrorCorrection {
         Message($"Z: {syndromeZ} → {recoveryOpZ}");
         ApplyPauli(recoveryOpZ, logicalRegister!);
     }
-    
-    
+
+
     function TableLookupRecoveryImpl (table : Pauli[][], syndrome : Syndrome) : Pauli[]
     {
         return table[ResultArrayAsInt(syndrome!)];
     }
-    
-    
+
+
     /// # Summary
     /// For a given table of Pauli operations on a given register of qubits, this function
     /// returns an object of type `RecoveryFn` which contains all information needed to
@@ -116,7 +116,5 @@ namespace Microsoft.Quantum.ErrorCorrection {
     {
         return RecoveryFn(TableLookupRecoveryImpl(table, _));
     }
-    
+
 }
-
-

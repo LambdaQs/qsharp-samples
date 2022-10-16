@@ -76,10 +76,10 @@ namespace Microsoft.Quantum.ErrorCorrection {
                 [PauliY, PauliI, PauliI, PauliI, PauliI],
                 [PauliI, PauliI, PauliI, PauliI, PauliY],
                 [PauliI, PauliI, PauliI, PauliY, PauliI]
-            ]);    
+            ]);
     }
-    
-    
+
+
     /// # Summary
     /// Encodes into the ⟦5, 1, 3⟧ quantum code.
     ///
@@ -151,5 +151,3 @@ namespace Microsoft.Quantum.ErrorCorrection {
     }
 
 }
-
-

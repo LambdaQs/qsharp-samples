@@ -396,17 +396,17 @@ namespace Microsoft.Quantum.Tests {
             ApplyToElement(X, 1, _),
             ApplyXToSecondQubit
         );
-        
+
         AssertOperationsEqualReferenced(3,
             ApplyToElementC(X, 1, _),
             ApplyXToSecondQubit
         );
-        
+
         AssertOperationsEqualReferenced(3,
             ApplyToElementA(X, 1, _),
             ApplyXToSecondQubit
         );
-        
+
         AssertOperationsEqualReferenced(3,
             ApplyToElementCA(X, 1, _),
             ApplyXToSecondQubit

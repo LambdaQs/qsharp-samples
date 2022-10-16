@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT license.
 
 //////////////////////////////////////////////////////////////////////
@@ -8,7 +8,7 @@
 // but feel free to look up the solution if you get stuck.
 //////////////////////////////////////////////////////////////////////
 
-namespace Quantum.Kata.DistinguishUnitaries {    
+namespace Quantum.Kata.DistinguishUnitaries {
     open Microsoft.Quantum.Canon;
     open Microsoft.Quantum.Convert;
     open Microsoft.Quantum.Math;
@@ -17,7 +17,7 @@ namespace Quantum.Kata.DistinguishUnitaries {
     open Microsoft.Quantum.Intrinsic;
     open Microsoft.Quantum.Measurement;
     open Microsoft.Quantum.Oracles;
-    
+
     // Task 1.1. Identity or Pauli X?
     // Output: 0 if the given operation is the I gate,
     //         1 if the given operation is the X gate.
@@ -71,7 +71,7 @@ namespace Quantum.Kata.DistinguishUnitaries {
         }
         return M(q) == Zero ? 0 | 1;
     }
-    
+
 
     // Task 1.5. Z or -Z?
     // Output: 0 if the given operation is the Z gate,
@@ -116,7 +116,7 @@ namespace Quantum.Kata.DistinguishUnitaries {
         use qs = Qubit[2];
         // prep (|0⟩ + |1⟩) ⊗ |0⟩
         within { H(qs[0]); }
-        apply {  
+        apply {
             Controlled unitary(qs[0..0], qs[1]);
             Controlled unitary(qs[0..0], qs[1]);
         }
@@ -124,7 +124,7 @@ namespace Quantum.Kata.DistinguishUnitaries {
         // 0 means it was Y
         return M(qs[0]) == Zero ? 0 | 1;
     }
-    
+
 
     operation Oracle_Reference (U : (Qubit => Unit is Adj + Ctl), power : Int, target : Qubit[]) : Unit is Adj + Ctl {
         for i in 1 .. power {
@@ -144,12 +144,12 @@ namespace Quantum.Kata.DistinguishUnitaries {
         // Construct a phase estimation oracle from the unitary
         let oracle = DiscreteOracle(Oracle_Reference(unitary, _, _));
 
-        // Allocate qubits to hold the eigenstate of U and the phase in a big endian register 
+        // Allocate qubits to hold the eigenstate of U and the phase in a big endian register
         mutable phaseInt = 0;
         use (eigenstate, phaseRegister) = (Qubit[1], Qubit[2]);
         let phaseRegisterBE = BigEndian(phaseRegister);
         // Prepare the eigenstate of U
-        H(eigenstate[0]); 
+        H(eigenstate[0]);
         S(eigenstate[0]);
         // Call library
         QuantumPhaseEstimation(oracle, eigenstate, phaseRegisterBE);
@@ -195,7 +195,7 @@ namespace Quantum.Kata.DistinguishUnitaries {
                 set measuredOne = true;
             }
             // if we try several times and still only get |0⟩s, chances are that it is Rz
-        } until (attempt == 5 or measuredOne) 
+        } until (attempt == 5 or measuredOne)
         fixup {
             set attempt += 1;
         }
@@ -237,7 +237,7 @@ namespace Quantum.Kata.DistinguishUnitaries {
     //////////////////////////////////////////////////////////////////
     // Part II. Multi-Qubit Gates
     //////////////////////////////////////////////////////////////////
-    
+
     // Task 2.1. I ⊗ X or CNOT?
     // Output: 0 if the given operation is I ⊗ X,
     //         1 if the given operation is the CNOT gate.
@@ -285,7 +285,7 @@ namespace Quantum.Kata.DistinguishUnitaries {
         ApplyToEach(X, qs);
         unitary(qs);
         let ind1 = MeasureInteger(LittleEndian(qs));
-        
+
         // second run: distinguish II from SWAP, apply to |01⟩: II will remain |01⟩, SWAP will become |10⟩
         X(qs[1]);
         unitary(qs);

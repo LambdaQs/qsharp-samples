@@ -10,7 +10,7 @@ namespace Solution {
                 ApplyToEachCA(Controlled H([Tail(qs)], _), Most(qs));
                 // do the top-left quarter by calling the same operation recursively
                 (ControlledOnInt(0, Solve))([Tail(qs)], Most(qs));
-            } 
+            }
         }
         adjoint auto;
         controlled auto;

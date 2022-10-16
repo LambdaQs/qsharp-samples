@@ -7,16 +7,16 @@ namespace Microsoft.Quantum.Arithmetic {
     open Microsoft.Quantum.Math;
 
     /// # Summary
-    /// The return type when making a lookup table. This contains the operation that 
-    /// makes the lookup table circuit, as well as all the parameters required to make 
-    /// the two FixedPoint registers that need to be used as inputs and outputs to the 
-    /// operator. 
+    /// The return type when making a lookup table. This contains the operation that
+    /// makes the lookup table circuit, as well as all the parameters required to make
+    /// the two FixedPoint registers that need to be used as inputs and outputs to the
+    /// operator.
     ///
     /// # Remarks
-    /// The reason we have this return type structure is so that the operator is similar 
+    /// The reason we have this return type structure is so that the operator is similar
     /// to the other typical Q# arithmetic function implementations (a larger discussion
     /// can had as to whether that can be changed)
-    newtype FunctionWithLookupTable = ( 
+    newtype FunctionWithLookupTable = (
         IntegerBitsIn: Int,
         FractionalBitsIn: Int,
         IntegerBitsOut: Int,
@@ -26,12 +26,12 @@ namespace Microsoft.Quantum.Arithmetic {
 
     /// # Summary
     /// This function creates a lookup table operator for the function that you want to approximate, as well as
-    /// the parameters required to make the two `FixedPoint` registers that need to be used as inputs to the operator. 
-    /// 
+    /// the parameters required to make the two `FixedPoint` registers that need to be used as inputs to the operator.
+    ///
     /// # Remarks
-    /// The operator guarantees that given an input value $x$ and a function $f(x)$, 
+    /// The operator guarantees that given an input value $x$ and a function $f(x)$,
     /// it will compute $\hat{f}(\hat{x})$ where $\hat{f}$ is an approximation of $f$ with a maximum error of epsOut and $\hat{x}$ is an
-    /// approximation of the input value $\hat{x}$ with a maximum error of `epsIn`. This is useful for most reasonably behaved 
+    /// approximation of the input value $\hat{x}$ with a maximum error of `epsIn`. This is useful for most reasonably behaved
     /// functions, but note that it computes $\hat{f}(\hat{x})$ and not $\hat{f}(x)$ so if the domain function is very oscillatory and/or
     /// has funky derivatives then it may have high errors.
     ///
@@ -142,9 +142,9 @@ namespace Microsoft.Quantum.Arithmetic {
     }
 
     /// # Summary
-    /// Creates a lookup table operation. This operation will require the minimum input value as a FixedPoint register, 
-    /// the list of output values in bits,the FixedPoint register with the input value and the FixedPoint register that 
-    /// will store the output value. Note that this imples that the bit size requirement of these registers are pre-computed 
+    /// Creates a lookup table operation. This operation will require the minimum input value as a FixedPoint register,
+    /// the list of output values in bits,the FixedPoint register with the input value and the FixedPoint register that
+    /// will store the output value. Note that this imples that the bit size requirement of these registers are pre-computed
     /// beforehand
     ///
     /// # Input
@@ -197,13 +197,13 @@ namespace Microsoft.Quantum.Arithmetic {
     }
 
     /// # Summary
-    /// Helper function that creates an operator that takes in just 1 binary value input (i.e. a list 
-    /// of booleans) and makes the circuit to apply paulis to create that binary value. We do this 
-    /// so that we can use it as part of the Mapped function to be able to make a list of unitaries 
+    /// Helper function that creates an operator that takes in just 1 binary value input (i.e. a list
+    /// of booleans) and makes the circuit to apply paulis to create that binary value. We do this
+    /// so that we can use it as part of the Mapped function to be able to make a list of unitaries
     /// given a list of binary numbers
     internal function MakeWriteBitsUnitary(bits : Bool[]) : Qubit[] => Unit is Adj + Ctl {
         return WriteBits(bits, _);
-        
+
     }
 
     /// # Summary

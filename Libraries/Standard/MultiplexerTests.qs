@@ -509,5 +509,3 @@ namespace Microsoft.Quantum.Tests {
     }
 
 }
-
-

@@ -65,7 +65,7 @@ namespace Microsoft.Quantum.Chemistry.JordanWigner.VQE {
     /// # Output
     /// An array of measurement operators (each being an array of Pauli).
     function MeasurementOperators(nQubits : Int, indices : Int[], termType : Int) : Pauli[][] {
-    
+
         // Compute the size and initialize the array of operators to be returned
         mutable nOps = 0;
         if (termType == 2) {set nOps = 2;}
@@ -103,7 +103,7 @@ namespace Microsoft.Quantum.Chemistry.JordanWigner.VQE {
                 for i in indices[2] + 1..indices[3] - 1 {
                     set op w/= i <- PauliZ;
                 }
-                set ops w/= iOp <- op; 
+                set ops w/= iOp <- op;
             }
         }
 

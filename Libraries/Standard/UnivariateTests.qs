@@ -9,7 +9,7 @@ namespace Microsoft.Quantum.Tests {
     function ParabolaCase(minima : Double, x : Double) : Double {
         return PowD((x - minima), 2.0);
     }
-    
+
     function AbsDistance(x : Double, y : Double) : Double {
         return AbsD(x - y);
     }

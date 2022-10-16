@@ -7,9 +7,9 @@ namespace Solution {
         for (i in 0 .. Length(bits1)-1) {
             if (bits1[i] != bits2[i]) {
                 return i;
-            } 
+            }
         }
-        return -1; 
+        return -1;
     }
 
     // Helper function for Embed_2x2_Operator: performs a Clifford to implement a base change
@@ -22,14 +22,14 @@ namespace Solution {
             let bits2 = BoolArrFromPositiveInt(index2, n);
             // find the index of the first bit at which the bit strings are different
             let diff = FirstDiff(bits1, bits2);
-    
+
             // we care only about 2 inputs: basis state of bits1 and bits2
-    
+
             // make sure that the state corresponding to bits1 has qs[diff] set to 0
             if (bits1[diff]) {
                 X(qs[diff]);
             }
-            
+
             // iterate through the bit strings again, setting the final state of qubits
             for (i in 0..n-1) {
                 if (bits1[i] == bits2[i]) {
@@ -55,7 +55,7 @@ namespace Solution {
             // move the differing bit to the last qubit
             if (diff < n-1) {
                 SWAP(qs[n-1], qs[diff]);
-            } 
+            }
         }
         adjoint auto;
     }

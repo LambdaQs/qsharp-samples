@@ -6,6 +6,6 @@
 /// types.
 ///
 /// # Description
-/// To learn more about this namespace, see 
+/// To learn more about this namespace, see
 /// [Type Conversions](xref:microsoft.quantum.libraries.overview.convert).
 namespace Microsoft.Quantum.Convert {}

@@ -3,11 +3,11 @@
 
 namespace Microsoft.Quantum.Canon
 {
-    
+
     // # Overview
     // Variants of the operation that applies given one, two and three qubit
     // operation to the first one, two and three qubits of a register
-    
+
     /// # Summary
     /// Applies an operation to the first qubit in the register.
     /// # Input
@@ -26,11 +26,11 @@ namespace Microsoft.Quantum.Canon
         {
             fail $"Must have at least one qubit to act on.";
         }
-        
+
         op(register[0]);
     }
-    
-    
+
+
     /// # Summary
     /// Applies an operation to the first qubit in the register.
     /// The modifier `A` indicates that the operation is adjointable.
@@ -50,14 +50,14 @@ namespace Microsoft.Quantum.Canon
             {
                 fail $"Must have at least one qubit to act on.";
             }
-            
+
             op(register[0]);
         }
-        
+
         adjoint invert;
     }
-    
-    
+
+
     /// # Summary
     /// Applies operation op to the first qubit in the register.
     /// The modifier `C` indicates that the operation is controllable.
@@ -77,14 +77,14 @@ namespace Microsoft.Quantum.Canon
             {
                 fail $"Must have at least one qubit to act on.";
             }
-            
+
             op(register[0]);
         }
-        
+
         controlled distribute;
     }
-    
-    
+
+
     /// # Summary
     /// Applies operation op to the first qubit in the register.
     /// The modifier `CA` indicates that the operation is controllable and adjointable.
@@ -104,16 +104,16 @@ namespace Microsoft.Quantum.Canon
             {
                 fail $"Must have at least one qubit to act on.";
             }
-            
+
             op(register[0]);
         }
-        
+
         adjoint invert;
         controlled distribute;
         controlled adjoint distribute;
     }
-    
-    
+
+
     /// # Summary
     /// Applies an operation to the first two qubits in the register.
     ///
@@ -139,11 +139,11 @@ namespace Microsoft.Quantum.Canon
         {
             fail $"Must have at least two qubits to act on.";
         }
-        
+
         op(register[0], register[1]);
     }
-    
-    
+
+
     /// # Summary
     /// Applies an operation to the first two qubits in the register.
     /// The modifier `A` indicates that the operation is adjointable.
@@ -170,14 +170,14 @@ namespace Microsoft.Quantum.Canon
             {
                 fail $"Must have at least two qubits to act on.";
             }
-            
+
             op(register[0], register[1]);
         }
-        
+
         adjoint invert;
     }
-    
-    
+
+
     /// # Summary
     /// Applies an operation to the first two qubits in the register.
     /// The modifier `C` indicates that the operation is controllable.
@@ -204,14 +204,14 @@ namespace Microsoft.Quantum.Canon
             {
                 fail $"Must have at least two qubits to act on.";
             }
-            
+
             op(register[0], register[1]);
         }
-        
+
         controlled distribute;
     }
-    
-    
+
+
     /// # Summary
     /// Applies an operation to the first two qubits in the register.
     /// The modifier `CA` indicates that the operation is controllable and adjointable.
@@ -238,16 +238,16 @@ namespace Microsoft.Quantum.Canon
             {
                 fail $"Must have at least two qubits to act on.";
             }
-            
+
             op(register[0], register[1]);
         }
-        
+
         adjoint invert;
         controlled distribute;
         controlled adjoint distribute;
     }
-    
-    
+
+
     /// # Summary
     /// Applies an operation to the first three qubits in the register.
     /// # Input
@@ -271,11 +271,11 @@ namespace Microsoft.Quantum.Canon
         {
             fail $"Must have at least three qubits to act on.";
         }
-        
+
         op(register[0], register[1], register[2]);
     }
-    
-    
+
+
     /// # Summary
     /// Applies an operation to the first three qubits in the register.
     /// The modifier `A` indicates that the operation is adjointable.
@@ -301,14 +301,14 @@ namespace Microsoft.Quantum.Canon
             {
                 fail $"Must have at least three qubits to act on.";
             }
-            
+
             op(register[0], register[1], register[2]);
         }
-        
+
         adjoint invert;
     }
-    
-    
+
+
     /// # Summary
     /// Applies an operation to the first three qubits in the register.
     /// The modifier `C` indicates that the operation is controllable.
@@ -334,14 +334,14 @@ namespace Microsoft.Quantum.Canon
             {
                 fail $"Must have at least three qubits to act on.";
             }
-            
+
             op(register[0], register[1], register[2]);
         }
-        
+
         controlled distribute;
     }
-    
-    
+
+
     /// # Summary
     /// Applies an operation to the first three qubits in the register.
     /// The modifier `CA` indicates that the operation is controllable and adjointable.
@@ -367,15 +367,13 @@ namespace Microsoft.Quantum.Canon
             {
                 fail $"Must have at least three qubits to act on.";
             }
-            
+
             op(register[0], register[1], register[2]);
         }
-        
+
         adjoint invert;
         controlled distribute;
         controlled adjoint distribute;
     }
-    
+
 }
-
-

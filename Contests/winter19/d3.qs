@@ -6,5 +6,5 @@ namespace Solution {
         ApplyToEach(CNOT(qs[0], _), qs[1 .. Length(qs) - 1]);
         H(qs[0]);
         ApplyToEach(CNOT(qs[0], _), qs[1 .. Length(qs) - 1]);
-    } 
+    }
 }

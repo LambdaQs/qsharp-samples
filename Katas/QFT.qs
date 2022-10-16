@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT license.
 
 //////////////////////////////////////////////////////////////////////
@@ -9,7 +9,7 @@
 //////////////////////////////////////////////////////////////////////
 
 namespace Quantum.Kata.QFT {
-    
+
     open Microsoft.Quantum.Measurement;
     open Microsoft.Quantum.Arrays;
     open Microsoft.Quantum.Arithmetic;
@@ -33,7 +33,7 @@ namespace Quantum.Kata.QFT {
     operation Rotation_Reference (q : Qubit, k : Int) : Unit is Adj+Ctl {
         R1Frac(2, k, q);
     }
-    
+
 
     // Task 1.3. Prepare binary fraction exponent (classical input)
     // Inputs:
@@ -70,7 +70,7 @@ namespace Quantum.Kata.QFT {
     // Inputs:
     //      1) A qubit in state |ψ⟩ = α |0⟩ + β |1⟩
     //      2) A register of qubits in state |j₁j₂...jₙ⟩
-    // Goal: Change the state of the input 
+    // Goal: Change the state of the input
     //       from (α |0⟩ + β |1⟩) ⊗ |j₁j₂...jₙ⟩
     //         to (α |0⟩ + β · exp(2πi · 0.j₁j₂...jₙ) |1⟩) ⊗ |j₁j₂...jₙ⟩,
     //       where 0.j₁j₂...jₙ is a binary fraction corresponding to the basis state j₁j₂...jₙ of the register.
@@ -108,7 +108,7 @@ namespace Quantum.Kata.QFT {
     // Task 1.7. Quantum Fourier transform
     // Input: A register of qubits in state |j₁j₂...jₙ⟩
     // Goal: Apply quantum Fourier transform to the input register, i.e.,
-    //       transform it to a state 
+    //       transform it to a state
     //       1/sqrt(2) (|0⟩ + exp(2πi · 0.jₙ) |1⟩) ⊗
     //       1/sqrt(2) (|0⟩ + exp(2πi · 0.jₙ₋₁jₙ) |1⟩) ⊗ ... ⊗
     //       1/sqrt(2) (|0⟩ + exp(2πi · 0.j₁j₂...jₙ₋₁jₙ) |1⟩) ⊗
@@ -133,7 +133,7 @@ namespace Quantum.Kata.QFT {
 
     // Task 2.1. Prepare an equal superposition of all basis states
     operation PrepareEqualSuperposition_Reference (register : Qubit[]) : Unit is Adj+Ctl {
-        // We get equal superposition of all basis states 
+        // We get equal superposition of all basis states
         // if we apply QFT to the |0...0⟩ state
         QFT(BigEndian(register));
     }
@@ -149,7 +149,7 @@ namespace Quantum.Kata.QFT {
 
         QFT(BigEndian(register));
     }
-    
+
 
     // Task 2.3. Prepare a periodic state with alternating 1 and -1 amplitudes
     // 1 / sqrt(2ⁿ) (|0⟩ - |1⟩ + |2⟩ - |3⟩ + ... - |2ⁿ-1⟩).
@@ -203,7 +203,7 @@ namespace Quantum.Kata.QFT {
     //////////////////////////////////////////////////////////////////
     // Part III. Powers and roots of the QFT
     //////////////////////////////////////////////////////////////////
-    
+
     // Task 3.1. Implement powers of the QFT
     operation QFTPower_Reference (P : Int, inputRegister : Qubit[]) : Unit is Adj+Ctl {
         // Use the fact that QFT⁴ = I
@@ -236,7 +236,7 @@ namespace Quantum.Kata.QFT {
             Controlled Adjoint Q([aux[0]], inputRegister);
             Controlled Adjoint Q2([aux[1]], inputRegister);
         } apply {
-            Circ(LittleEndian(aux), PI() / (2.0 * IntAsDouble(P))); 
+            Circ(LittleEndian(aux), PI() / (2.0 * IntAsDouble(P)));
         }
     }
 

@@ -3,7 +3,7 @@
 
 namespace Microsoft.Quantum.Canon {
     open Microsoft.Quantum.Diagnostics;
-    
+
     /// # Summary
     /// Applies a pair of operations to a given partition of a register into two parts.
     ///
@@ -27,8 +27,8 @@ namespace Microsoft.Quantum.Canon {
         EqualityFactB(Length(target) >= numberOfQubitsToFirstArgument, true, $"Length(target) must greater or equal to numberOfQubitsToFirstArgument");
         op(target[0 .. numberOfQubitsToFirstArgument - 1], target[numberOfQubitsToFirstArgument .. Length(target) - 1]);
     }
-    
-    
+
+
     /// # Summary
     /// Applies a pair of operations to a given partition of a register into two parts.
     /// The modifier `A` indicates that the operation is adjointable.
@@ -53,11 +53,11 @@ namespace Microsoft.Quantum.Canon {
             EqualityFactB(Length(target) >= numberOfQubitsToFirstArgument, true, $"Length(target) must greater or equal to numberOfQubitsToFirstArgument");
             op(target[0 .. numberOfQubitsToFirstArgument - 1], target[numberOfQubitsToFirstArgument .. Length(target) - 1]);
         }
-        
+
         adjoint invert;
     }
-    
-    
+
+
     /// # Summary
     /// Applies a pair of operations to a given partition of a register into two parts.
     /// The modifier `C` indicates that the operation is controllable.
@@ -82,11 +82,11 @@ namespace Microsoft.Quantum.Canon {
             EqualityFactB(Length(target) >= numberOfQubitsToFirstArgument, true, $"Length(target) must greater or equal to numberOfQubitsToFirstArgument");
             op(target[0 .. numberOfQubitsToFirstArgument - 1], target[numberOfQubitsToFirstArgument .. Length(target) - 1]);
         }
-        
+
         controlled distribute;
     }
-    
-    
+
+
     /// # Summary
     /// Applies a pair of operations to a given partition of a register into two parts.
     /// The modifier `CA` indicates that the operation is controllable and adjointable.
@@ -111,12 +111,10 @@ namespace Microsoft.Quantum.Canon {
             EqualityFactB(Length(target) >= numberOfQubitsToFirstArgument, true, $"Length(target) must greater or equal to numberOfQubitsToFirstArgument");
             op(target[0 .. numberOfQubitsToFirstArgument - 1], target[numberOfQubitsToFirstArgument .. Length(target) - 1]);
         }
-        
+
         adjoint invert;
         controlled distribute;
         controlled adjoint distribute;
     }
-    
+
 }
-
-

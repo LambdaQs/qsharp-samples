@@ -85,7 +85,7 @@ namespace Microsoft.Quantum.Arrays {
     /// ```qsharp
     /// let sortedArray = Sorted(LessThanOrEqualI, [3, 17, 11, -201, -11]);
     /// ```
-    /// 
+    ///
     /// # Remarks
     /// The function `comparison` is assumed to be transitive, such that
     /// if `comparison(a, b)` and `comparison(b, c)`, then `comparison(a, c)`
@@ -124,7 +124,7 @@ namespace Microsoft.Quantum.Arrays {
             // Sort each sublist, then merge them back into a single combined
             // list and return.
             return Merged(
-                comparison, 
+                comparison,
                 Sorted(comparison, left),
                 Sorted(comparison, right)
             );

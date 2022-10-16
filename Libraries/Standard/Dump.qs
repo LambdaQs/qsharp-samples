@@ -24,7 +24,7 @@ namespace Microsoft.Quantum.Diagnostics {
     ///
     /// ```qsharp
     /// open Microsoft.Quantum.Arrays as Arrays;
-    /// 
+    ///
     /// operation ApplyH(register : Qubit[]) : Unit is Adj + Ctl {
     ///     H(Head(register));
     /// }

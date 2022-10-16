@@ -94,8 +94,8 @@ namespace Microsoft.Quantum.ErrorCorrection {
     {
         return (RecoveryFn(SteaneCodeRecoveryX), RecoveryFn(SteaneCodeRecoveryZ));
     }
-    
-    
+
+
     /// # Summary
     /// An encoding operation that maps an unencoded quantum register to an encoded quantum register
     /// under the ⟦7, 1, 3⟧ Steane quantum code.
@@ -119,8 +119,8 @@ namespace Microsoft.Quantum.ErrorCorrection {
         let logicalRegister = LogicalRegister(physRegister + auxQubits);
         return logicalRegister;
     }
-    
-    
+
+
     /// # Summary
     /// An inverse encoding operation that maps an unencoded quantum register to an encoded quantum
     /// register under the ⟦7, 1, 3⟧ Steane quantum code.
@@ -168,17 +168,17 @@ namespace Microsoft.Quantum.ErrorCorrection {
     function SteaneCode () : CSS {
         let e = EncodeOp(EncodeIntoSteaneCode);
         let d = DecodeOp(DecodeFromSteaneCode);
-        let xg = 
-            [ 
+        let xg =
+            [
                 [PauliX, PauliI, PauliX, PauliI, PauliX, PauliI, PauliX],
                 [PauliI, PauliX, PauliX, PauliI, PauliI, PauliX, PauliX],
                 [PauliI, PauliI, PauliI, PauliX, PauliX, PauliX, PauliX]
             ];
-        let zg = 
-            [ 
+        let zg =
+            [
                 [PauliZ, PauliI, PauliZ, PauliI, PauliZ, PauliI, PauliZ],
                 [PauliI, PauliZ, PauliZ, PauliI, PauliI, PauliZ, PauliZ],
-                [PauliI, PauliI, PauliI, PauliZ, PauliZ, PauliZ, PauliZ] 
+                [PauliI, PauliI, PauliI, PauliZ, PauliZ, PauliZ, PauliZ]
             ];
         let sx = SyndromeMeasOp(MeasureStabilizerGenerators(xg, _, MeasureWithScratch));
         let sz = SyndromeMeasOp(MeasureStabilizerGenerators(zg, _, MeasureWithScratch));
@@ -187,5 +187,3 @@ namespace Microsoft.Quantum.ErrorCorrection {
     }
 
 }
-
-

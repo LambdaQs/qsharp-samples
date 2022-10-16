@@ -10,7 +10,7 @@ namespace Microsoft.Quantum.Chemistry.Tests {
     open Microsoft.Quantum.Math;
     open Microsoft.Quantum.Arrays;
     open Microsoft.Quantum.Chemistry.JordanWigner;
-    
+
     // Check that correct Pauli Z string is computed
     function _ComputeJordanWignerBitString_0Test() : Unit {
         let nFermions = 5;
@@ -33,14 +33,14 @@ namespace Microsoft.Quantum.Chemistry.Tests {
         let fermionIndices = [0, 4, 2, 6];
         let expectedBitString = [PauliI, PauliZ, PauliI, PauliI, PauliI, PauliZ, PauliI];
         let bitString = _ComputeJordanWignerPauliZString(nFermions, fermionIndices);
-        
+
         mutable product = [false, size = nFermions];
         mutable expected = [false, size = nFermions];
         for idx in 0..nFermions - 1 {
             set product w/= idx <- expectedBitString[idx] == bitString[idx] ? true | false;
             set expected w/= idx <- true;
         }
-        
+
         AllEqualityFactB (product, expected, "Bit strings not equal");
     }
 
@@ -97,34 +97,34 @@ namespace Microsoft.Quantum.Chemistry.Tests {
     }
 
     operation JordanWignerUCCSTermTest() : Unit{
-        // test using Exp(2.0 (a^\dag_1 a_3 - h.c.)) 
+        // test using Exp(2.0 (a^\dag_1 a_3 - h.c.))
         let term0 = [JordanWignerInputState((2.0,0.0), [1,3])];
         let state0 = [0.,0.,-0.416147,0.,0.,0.,0.,0.,-0.909297,0.,0.,0.,0.,0.,0.,0.];
         _JordanWignerUCCTermTestHelper(4, [1], term0, state0);
 
-        // test using Exp(2.0 (a^\dag_3 a_1 - h.c.)) 
+        // test using Exp(2.0 (a^\dag_3 a_1 - h.c.))
         let term1 = [JordanWignerInputState((2.0,0.0), [3,1])];
         let state1 = [0.,0.,-0.416147,0.,0.,0.,0.,0.,0.909297,0.,0.,0.,0.,0.,0.,0.];
         _JordanWignerUCCTermTestHelper(4, [1], term1, state1);
     }
 
     operation JordanWignerUCCDTermPQRSTest() : Unit{
-        // test using Exp(2.0 (a^\dag_0 a^\dag_1 a_3 a_4 - h.c.)) 
+        // test using Exp(2.0 (a^\dag_0 a^\dag_1 a_3 a_4 - h.c.))
         let term0 = [JordanWignerInputState((2.0,0.0), [0,1,2,4])];
         let state0 = [0.,0.,0.,-0.416147,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.909297,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.];
         _JordanWignerUCCTermTestHelper(5, [0,1], term0, state0);
 
-        // test using Exp(2.0 (a^\dag_0 a^\dag_1 a_3 a_4 - h.c.)) 
+        // test using Exp(2.0 (a^\dag_0 a^\dag_1 a_3 a_4 - h.c.))
         let term1 = [JordanWignerInputState((2.0,0.0), [0,1,2,4])];
         let state1 = [0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,-0.416147,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,-0.909297,0.,0.,0.];
         _JordanWignerUCCTermTestHelper(5, [0,1,3], term1, state1);
 
-        // test using Exp(2.0 (a^\dag_1 a^\dag_0 a_2 a_4 - h.c.)) 
+        // test using Exp(2.0 (a^\dag_1 a^\dag_0 a_2 a_4 - h.c.))
         let term2 = [JordanWignerInputState((2.0,0.0), [1,0,2,4])];
         let state2 = [0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,-0.416147,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.909297,0.,0.,0.];
         _JordanWignerUCCTermTestHelper(5, [0,1,3], term2, state2);
 
-        // test using Exp(2.0 (a^\dag_1 a^\dag_0 a_2 a_4 - h.c.)) 
+        // test using Exp(2.0 (a^\dag_1 a^\dag_0 a_2 a_4 - h.c.))
         let term3 = [JordanWignerInputState((-2.0,0.0), [4,2,1,0])];
         let state3 = [0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,-0.416147,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.909297,0.,0.,0.];
         _JordanWignerUCCTermTestHelper(5, [0,1,3], term2, state2);

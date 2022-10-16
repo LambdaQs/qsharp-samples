@@ -250,4 +250,3 @@ namespace Microsoft.Quantum.Chemistry.JordanWigner {
     }
 
 }
-

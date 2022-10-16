@@ -103,4 +103,3 @@ namespace Microsoft.Quantum.Canon {
     }
 
 }
-

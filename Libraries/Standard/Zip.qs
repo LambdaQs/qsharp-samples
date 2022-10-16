@@ -193,5 +193,3 @@ namespace Microsoft.Quantum.Arrays {
         return (first, second);
     }
 }
-
-

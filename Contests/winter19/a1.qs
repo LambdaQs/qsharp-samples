@@ -4,5 +4,5 @@ namespace Solution {
 
     operation Solve (qs : Qubit[]) : Unit {
         PrepareUniformSuperposition(3, BigEndian(qs));
-    } 
+    }
 }

@@ -164,7 +164,7 @@ namespace Quantum.Kata.BasicGates {
     // Goal:  Change the two-qubit state to β|00⟩ + α|01⟩ + γ|10⟩ + δ|11⟩.
     operation TwoQubitGate4_Reference (qs : Qubit[]) : Unit is Adj+Ctl {
         // Hint: This task can be solved using one library function;
-        // as an exercise, try to express the solution using several (possibly controlled) Pauli gates. 
+        // as an exercise, try to express the solution using several (possibly controlled) Pauli gates.
         CNOT(qs[0], qs[1]);
         X(qs[1]);
         // alternatively ControlledOnInt(0, X)([qs[0]], qs[1]);

@@ -11,7 +11,7 @@ namespace Solution {
                 for (j in 0 .. Length(qs) - 1) {
                     if ((bits[i])[j]) {
                         (ControlledOnInt(i, X))(anc, qs[j]);
-                    } 
+                    }
                 }
             }
             // Uncompute the ancillas, using patterns on main qubits as control
@@ -21,7 +21,7 @@ namespace Solution {
                 }
                 if (i / 2 == 1) {
                     (ControlledOnBitString(bits[i], X))(qs, anc[1]);
-                } 
+                }
             }
         }
     }

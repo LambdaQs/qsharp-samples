@@ -20,7 +20,7 @@ namespace Quantum.Kata.TruthTables {
     //////////////////////////////////////////////////////////////////
     // Part I. Truth tables as integers
     //////////////////////////////////////////////////////////////////
-    
+
     // Task 1. Projective functions (elementary variables)
     function ProjectiveTruthTables_Reference () : (TruthTable, TruthTable, TruthTable) {
         let x1 = TruthTable(0b10101010, 3);

@@ -68,7 +68,7 @@ namespace Microsoft.Quantum.Arrays {
 
         let length = BoolArrayAsInt(BigIntAsBoolArray(to - from)) + 1;
         mutable array = [0L, size = length];
-        
+
         for i in 0 .. length - 1 {
             set array w/= i <- from + IntAsBigInt(i);
         }

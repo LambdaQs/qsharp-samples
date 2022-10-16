@@ -12,9 +12,9 @@ namespace Solution {
             for (i in 0..Length(qs)-1) {
                 if (M(qs[i]) == One) {
                     return 1;
-                } 
+                }
             }
-            return 0; 
+            return 0;
         }
     }
 }

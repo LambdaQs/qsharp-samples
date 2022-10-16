@@ -36,7 +36,7 @@ namespace Solution {
                 set output = 3;
             }
         }
-        
+
         return output;
     }
 }

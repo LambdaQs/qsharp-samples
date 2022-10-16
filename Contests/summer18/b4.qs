@@ -13,7 +13,7 @@ namespace Solution {
         }
             adjoint self;
         }
-    
+
     operation Solve (qs : Qubit[]) : Int
     {
         body
@@ -21,7 +21,7 @@ namespace Solution {
             SWAP(qs[0], qs[1]); // pi
             With(ApplyDiag, ApplyToEach(H, _), qs); // diag(..) (H \otimes H) diag(..)
             return ResultAsInt([M(qs[1]), M(qs[0])]);
-            
-        } 
+
+        }
     }
 }

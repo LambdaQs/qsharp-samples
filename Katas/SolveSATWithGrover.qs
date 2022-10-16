@@ -9,25 +9,25 @@
 //////////////////////////////////////////////////////////////////////
 
 namespace Quantum.Kata.GroversAlgorithm {
-    
+
     open Microsoft.Quantum.Measurement;
     open Microsoft.Quantum.Arrays;
     open Microsoft.Quantum.Intrinsic;
     open Microsoft.Quantum.Canon;
     open Microsoft.Quantum.Convert;
-    
-    
+
+
     //////////////////////////////////////////////////////////////////
     // Part I. Oracles for SAT problems
     //////////////////////////////////////////////////////////////////
-    
+
     // Task 1.1. The AND oracle: f(x) = x₀ ∧ x₁
-    operation Oracle_And_Reference_2 (queryRegister : Qubit[], target : Qubit) : Unit is Adj {        
+    operation Oracle_And_Reference_2 (queryRegister : Qubit[], target : Qubit) : Unit is Adj {
         CCNOT(queryRegister[0], queryRegister[1], target);
     }
 
     // AND oracle for an arbitrary number of qubits in query register
-    operation Oracle_And_Reference (queryRegister : Qubit[], target : Qubit) : Unit is Adj {        
+    operation Oracle_And_Reference (queryRegister : Qubit[], target : Qubit) : Unit is Adj {
         Controlled X(queryRegister, target);
     }
 
@@ -49,7 +49,7 @@ namespace Quantum.Kata.GroversAlgorithm {
     }
 
     // OR oracle for an arbitrary number of qubits in query register
-    operation Oracle_Or_Reference (queryRegister : Qubit[], target : Qubit) : Unit is Adj {        
+    operation Oracle_Or_Reference (queryRegister : Qubit[], target : Qubit) : Unit is Adj {
         // x₀ ∨ x₁ = ¬ (¬x₀ ∧ ¬x₁)
         // First, flip target if both qubits are in |0⟩ state
         (ControlledOnInt(0, X))(queryRegister, target);
@@ -60,18 +60,18 @@ namespace Quantum.Kata.GroversAlgorithm {
 
     // ------------------------------------------------------
     // Task 1.3. The XOR oracle: f(x) = x₀ ⊕ x₁
-    operation Oracle_Xor_Reference_2 (queryRegister : Qubit[], target : Qubit) : Unit is Adj {        
+    operation Oracle_Xor_Reference_2 (queryRegister : Qubit[], target : Qubit) : Unit is Adj {
         CNOT(queryRegister[0], target);
         CNOT(queryRegister[1], target);
     }
 
     // XOR oracle for an arbitrary number of qubits in query register
-    operation Oracle_Xor_Reference (queryRegister : Qubit[], target : Qubit) : Unit is Adj {        
+    operation Oracle_Xor_Reference (queryRegister : Qubit[], target : Qubit) : Unit is Adj {
         ApplyToEachA(CNOT(_, target), queryRegister);
     }
 
     // Alternative solution to task 1.3, based on representation as a 2-SAT problem
-    operation Oracle_Xor_2SAT (queryRegister : Qubit[], target : Qubit) : Unit is Adj {        
+    operation Oracle_Xor_2SAT (queryRegister : Qubit[], target : Qubit) : Unit is Adj {
         // x₀ ⊕ x₁ = (x₀ ∨ x₁) ∧ (¬x₀ ∨ ¬x₁)
         // Allocate 2 auxiliary qubits to store results of clause evaluation
         use (a1, a2) = (Qubit(), Qubit());
@@ -92,7 +92,7 @@ namespace Quantum.Kata.GroversAlgorithm {
     // ------------------------------------------------------
     // Task 1.4. Alternating bits oracle: f(x) = (x₀ ⊕ x₁) ∧ (x₁ ⊕ x₂) ∧ ... ∧ (xₙ₋₂ ⊕ xₙ₋₁)
     operation Oracle_AlternatingBits_Reference (queryRegister : Qubit[], target : Qubit) : Unit is Adj {
-        
+
         // Allocate N-1 qubits to store results of clauses evaluation
         let N = Length(queryRegister);
         use anc = Qubit[N-1];
@@ -110,7 +110,7 @@ namespace Quantum.Kata.GroversAlgorithm {
 
     // Answer-based solution for alternating bits oracle
     operation FlipAlternatingPositionBits_Reference (register : Qubit[], firstIndex : Int) : Unit is Adj {
-        
+
         // iterate over elements in every second position, starting with firstIndex (indexes are 0-based)
         for i in firstIndex .. 2 .. Length(register) - 1 {
             X(register[i]);
@@ -118,14 +118,14 @@ namespace Quantum.Kata.GroversAlgorithm {
     }
 
     operation Oracle_AlternatingBits_Answer (queryRegister : Qubit[], target : Qubit) : Unit is Adj {
-        
-        // similar to task 1.2 from GroversAlgorithm kata: 
-        // first mark the state with 1s in even positions (starting with the first qubit, index 0), 
+
+        // similar to task 1.2 from GroversAlgorithm kata:
+        // first mark the state with 1s in even positions (starting with the first qubit, index 0),
         // then mark the state with 1s in odd positions
         for firstIndex in 0..1 {
             within {
                 FlipAlternatingPositionBits_Reference(queryRegister, firstIndex);
-            } 
+            }
             apply {
                Controlled X(queryRegister, target);
             }
@@ -143,14 +143,14 @@ namespace Quantum.Kata.GroversAlgorithm {
             // If the negation of the variable is present in the formula, mark the qubit as needing a flip
             set flip += [not isTrue];
         }
-    
+
         return (clauseQubits, flip);
     }
 
 
     // Task 1.5. Evaluate one clause of a SAT formula
-    operation Oracle_SATClause_Reference (queryRegister : Qubit[], 
-                                          target : Qubit, 
+    operation Oracle_SATClause_Reference (queryRegister : Qubit[],
+                                          target : Qubit,
                                           clause : (Int, Bool)[]) : Unit is Adj {
         let (clauseQubits, flip) = GetClauseQubits(queryRegister, clause);
 
@@ -166,8 +166,8 @@ namespace Quantum.Kata.GroversAlgorithm {
 
     // ------------------------------------------------------
     // Helper operation to evaluate all OR clauses given in the formula (independent on the number of variables in each clause)
-    operation EvaluateOrClauses (queryRegister : Qubit[], 
-                                 ancillaRegister : Qubit[], 
+    operation EvaluateOrClauses (queryRegister : Qubit[],
+                                 ancillaRegister : Qubit[],
                                  problem : (Int, Bool)[][],
                                  clauseOracle : ((Qubit[], Qubit, (Int, Bool)[]) => Unit is Adj)) : Unit is Adj {
         for clauseIndex in 0..Length(problem)-1 {
@@ -176,8 +176,8 @@ namespace Quantum.Kata.GroversAlgorithm {
     }
 
     // Task 1.6. General SAT problem oracle: f(x) = ∧ᵢ (∨ₖ yᵢₖ), yᵢₖ = either xᵢₖ or ¬xᵢₖ
-    operation Oracle_SAT_Reference (queryRegister : Qubit[], 
-                           target : Qubit, 
+    operation Oracle_SAT_Reference (queryRegister : Qubit[],
+                           target : Qubit,
                            problem : (Int, Bool)[][]) : Unit is Adj {
         // Similar to task 1.4.
         // Allocate qubits to store results of clauses evaluation
@@ -214,8 +214,8 @@ namespace Quantum.Kata.GroversAlgorithm {
     }
 
     // ------------------------------------------------------
-    operation Oracle_Exactly1OneClause_Reference (queryRegister : Qubit[], 
-                                                  target : Qubit, 
+    operation Oracle_Exactly1OneClause_Reference (queryRegister : Qubit[],
+                                                  target : Qubit,
                                                   clause : (Int, Bool)[]) : Unit is Adj {
         let (clauseQubits, flip) = GetClauseQubits(queryRegister, clause);
 
@@ -230,9 +230,9 @@ namespace Quantum.Kata.GroversAlgorithm {
     }
 
     // Task 2.2. "Exactly-1 3-SAT" oracle
-    operation Oracle_Exactly1_3SAT_Reference (queryRegister : Qubit[], 
-                                              target : Qubit, 
-                                              problem : (Int, Bool)[][]) : Unit is Adj {        
+    operation Oracle_Exactly1_3SAT_Reference (queryRegister : Qubit[],
+                                              target : Qubit,
+                                              problem : (Int, Bool)[][]) : Unit is Adj {
         // similar to task 1.7
         use ancillaRegister = Qubit[Length(problem)];
         // Compute clauses, evaluate the overall formula as an AND oracle (can use reference depending on the implementation) and uncompute
@@ -249,7 +249,7 @@ namespace Quantum.Kata.GroversAlgorithm {
     //////////////////////////////////////////////////////////////////
     // Part III. Using Grover's algorithm for problems with multiple solutions
     //////////////////////////////////////////////////////////////////
-    
+
     operation OracleConverterImpl_Reference (markingOracle : ((Qubit[], Qubit) => Unit is Adj), register : Qubit[]) : Unit is Adj {
 
         use target = Qubit();
@@ -264,7 +264,7 @@ namespace Quantum.Kata.GroversAlgorithm {
             markingOracle(register, target);
         }
     }
-    
+
     function OracleConverter_Reference (markingOracle : ((Qubit[], Qubit) => Unit is Adj)) : (Qubit[] => Unit is Adj) {
         return OracleConverterImpl_Reference(markingOracle, _);
     }
@@ -287,7 +287,7 @@ namespace Quantum.Kata.GroversAlgorithm {
 
     // Task 3.2. Universal implementation of Grover's algorithm
     operation UniversalGroversAlgorithm_Reference (N : Int, oracle : ((Qubit[], Qubit) => Unit is Adj)) : Bool[] {
-        // In this task you don't know the optimal number of iterations upfront, 
+        // In this task you don't know the optimal number of iterations upfront,
         // so it makes sense to try different numbers of iterations.
         // This way, even if you don't hit the "correct" number of iterations on one of your tries,
         // you'll eventually get a high enough success probability.

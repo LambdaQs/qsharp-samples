@@ -115,5 +115,3 @@ namespace Microsoft.Quantum.Chemistry.Tests {
     }
 
 }
-
-

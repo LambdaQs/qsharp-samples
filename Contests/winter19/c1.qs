@@ -19,7 +19,7 @@ namespace Solution {
                 FlipAlternatingPositionBits(x, firstIndex);
                 Controlled X(x, y);
                 Adjoint FlipAlternatingPositionBits(x, firstIndex);
-            } 
+            }
         }
         adjoint auto;
     }

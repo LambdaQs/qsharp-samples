@@ -31,7 +31,7 @@ namespace Solution {
                 }
                 else {
                     set output = -1;
-                } 
+                }
             }
             return output;
         }

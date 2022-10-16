@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT license.
 
 //////////////////////////////////////////////////////////////////////
@@ -42,8 +42,8 @@ namespace Quantum.Kata.MagicSquareGame {
 
     // Task 1.2. Win condition
     function WinCondition_Reference (rowIndex : Int, columnIndex : Int, row : Int[], column : Int[]) : Bool {
-        return ValidAliceMove_Reference(row) and 
-               ValidBobMove_Reference(column) and 
+        return ValidAliceMove_Reference(row) and
+               ValidBobMove_Reference(column) and
                row[columnIndex] == column[rowIndex];
     }
 
@@ -54,7 +54,7 @@ namespace Quantum.Kata.MagicSquareGame {
     // that is self-consistent while still following the rules of the game. Alice and Bob will
     // always have different signs in at least one cell, so they can only win at most 89% of the time.
     //
-    // Here we use one possible magic square, described at 
+    // Here we use one possible magic square, described at
     // https://en.wikipedia.org/wiki/Quantum_pseudo-telepathy#The_Mermin-Peres_magic_square_game;
     // other squares that yield the same win rate are possible.
     function AliceClassical_Reference (rowIndex : Int) : Int[] {

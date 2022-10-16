@@ -18,7 +18,7 @@ namespace Solution {
                 // Uncompute
                 for (i in N-period-1..-1..0) {
                     CNOT(queryRegister[i + period], queryRegister[i]);
-                } 
+                }
             }
         }
 
@@ -36,7 +36,7 @@ namespace Solution {
                 (ControlledOnInt(0, X))(anc, y);
                 X(y);
                 Adjoint EvaluatePeriodClauses(x, anc);
-            } 
+            }
         }
         adjoint self;
     }

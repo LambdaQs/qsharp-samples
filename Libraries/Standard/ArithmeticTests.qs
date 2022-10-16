@@ -157,5 +157,3 @@ namespace Microsoft.Quantum.ArithmeticTests {
     }
 
 }
-
-

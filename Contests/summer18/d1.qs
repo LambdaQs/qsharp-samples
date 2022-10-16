@@ -9,8 +9,8 @@ namespace Solution {
             for (i in 0..Length(x)-1) {
                 if (b[i] == 1) {
                     CNOT(x[i], y);
-                } 
+                }
             }
-        } 
+        }
     }
 }

@@ -9,7 +9,7 @@
 //////////////////////////////////////////////////////////////////////
 
 namespace Quantum.Kata.PhaseEstimation {
-    
+
     open Microsoft.Quantum.Measurement;
     open Microsoft.Quantum.Characterization;
     open Microsoft.Quantum.Arithmetic;
@@ -18,12 +18,12 @@ namespace Quantum.Kata.PhaseEstimation {
     open Microsoft.Quantum.Canon;
     open Microsoft.Quantum.Diagnostics;
     open Microsoft.Quantum.Convert;
-    
-    
+
+
     //////////////////////////////////////////////////////////////////
     // Part I. Quantum phase estimation (QPE)
     //////////////////////////////////////////////////////////////////
-    
+
     // Task 1.1. Inputs to QPE: eigenstates of Z/S/T gates.
     operation Eigenstates_ZST_Reference (q : Qubit, state : Int) : Unit is Adj {
         if (state == 1) {
@@ -71,7 +71,7 @@ namespace Quantum.Kata.PhaseEstimation {
     operation QPE_Reference (U : (Qubit => Unit is Adj + Ctl), P : (Qubit => Unit is Adj), n : Int) : Double {
         // Construct a phase estimation oracle from the unitary
         let oracle = DiscreteOracle(Oracle_Reference(U, _, _));
-        // Allocate qubits to hold the eigenstate of U and the phase in a big endian register 
+        // Allocate qubits to hold the eigenstate of U and the phase in a big endian register
         use (eigenstate, phaseRegister) = (Qubit[1], Qubit[n]);
         let phaseRegisterBE = BigEndian(phaseRegister);
         // Prepare the eigenstate of U
@@ -91,7 +91,7 @@ namespace Quantum.Kata.PhaseEstimation {
     // We let exp(2πiθ) denote the eigenvalue of U corresponding to eigenstate P|0⟩.
     // This function will return an approximation of θ.
     operation QPE_Reference_QFT (U : (Qubit => Unit is Adj + Ctl), P : (Qubit => Unit is Adj), n : Int) : Double {
-        
+
         use (eigenstate, phaseRegister) = (Qubit(), Qubit[n]);
         // Prepare the eigenstate of U
         P(eigenstate);
@@ -127,16 +127,16 @@ namespace Quantum.Kata.PhaseEstimation {
     //////////////////////////////////////////////////////////////////
     // Part II. Iterative phase estimation
     //////////////////////////////////////////////////////////////////
-    
+
     // Task 2.1. Single-bit phase estimation
     operation SingleBitPE_Reference (U : (Qubit => Unit is Adj + Ctl), P : (Qubit => Unit is Adj)) : Int {
-        
+
         use (control, eigenstate) = (Qubit(), Qubit());
         // prepare the eigenstate |ψ⟩
         P(eigenstate);
 
         within {
-            H(control);     
+            H(control);
         } apply {
             Controlled U([control], eigenstate);
         }
@@ -157,20 +157,20 @@ namespace Quantum.Kata.PhaseEstimation {
             // prepare the eigenstate |ψ⟩
             P(eigenstate);
 
-            mutable (measuredZero, measuredOne) = (false, false); 
+            mutable (measuredZero, measuredOne) = (false, false);
             mutable iter = 0;
             repeat {
                 set iter += 1;
 
                 within {
-                    H(control);     
+                    H(control);
                 } apply {
                     Controlled U([control], eigenstate);
                 }
 
                 let meas = MResetZ(control);
                 set (measuredZero, measuredOne) = (measuredZero or meas == Zero, measuredOne or meas == One);
-            } 
+            }
             // repeat the loop until we get both Zero and One measurement outcomes
             // or until we're reasonably certain that we won't get a different outcome
             until (iter == 10 or measuredZero and measuredOne);
@@ -198,6 +198,6 @@ namespace Quantum.Kata.PhaseEstimation {
 
             return eigenvalue;
         }
-        
+
     }
 }

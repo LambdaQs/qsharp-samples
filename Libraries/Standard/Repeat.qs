@@ -68,7 +68,7 @@ namespace Microsoft.Quantum.Canon {
             op(input);
         }
     }
-    
+
     /// # Summary
     /// Repeats an operation a given number of times.
     ///
@@ -129,7 +129,7 @@ namespace Microsoft.Quantum.Canon {
     /// - Microsoft.Quantum.Canon.Repeat
     /// - Microsoft.Quantum.Canon.RepeatA
     /// - Microsoft.Quantum.Canon.RepeatC
-    operation RepeatCA<'TInput>(op : ('TInput => Unit is Adj + Ctl), nTimes : Int, input : 'TInput) : Unit is Adj + Ctl { 
+    operation RepeatCA<'TInput>(op : ('TInput => Unit is Adj + Ctl), nTimes : Int, input : 'TInput) : Unit is Adj + Ctl {
         for idx in 0..nTimes - 1 {
             op(input);
         }

@@ -39,7 +39,7 @@ namespace Microsoft.Quantum.Tests {
 
             PrepareFxP(inputValue, inputFxP);
             ExponentialExample(inputFxP, outputFxP);
-            
+
             let inResult = MeasureFxP(inputFxP);
             let outResult = MeasureFxP(outputFxP);
 
@@ -58,7 +58,7 @@ namespace Microsoft.Quantum.Tests {
         let xMax = 8.125;
         let epsIn = 0.125;
         let epsOut = 0.25;
- 
+
         let lookup = ApplyFunctionWithLookupTable(func, (xMin, xMax), epsIn, epsOut);
 
         use inputRegister = Qubit[lookup::IntegerBitsIn+lookup::FractionalBitsIn];

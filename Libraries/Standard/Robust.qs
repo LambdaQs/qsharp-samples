@@ -79,5 +79,3 @@ namespace Microsoft.Quantum.Characterization {
     }
 
 }
-
-

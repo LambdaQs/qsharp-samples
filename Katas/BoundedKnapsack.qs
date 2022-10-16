@@ -23,14 +23,14 @@ namespace Quantum.Kata.BoundedKnapsack {
     //////////////////////////////////////////////////////////////////
     // Part I. 0-1 Knapsack Problem
     //////////////////////////////////////////////////////////////////
-    
+
 
     // Task 1.1. Read combination from a register
     operation MeasureCombination01_Reference (register : Qubit[]) : Bool[] {
         return ResultArrayAsBoolArray(MultiM(register));
     }
 
-    
+
     // Task 1.2. Calculate the number of (qu)bits necessary to hold the maximum total value
     function NumBitsTotalValue01_Reference (itemValues : Int[]) : Int {
         mutable maxValue = 0;
@@ -39,7 +39,7 @@ namespace Quantum.Kata.BoundedKnapsack {
         }
         return BitSizeI(maxValue);
     }
-    
+
 
     // Task 1.3. Calculate total value of selected items
     operation CalculateTotalValueOfSelectedItems01_Reference (itemValues : Int[], selectedItems : Qubit[], total : Qubit[]) : Unit is Adj+Ctl {
@@ -63,7 +63,7 @@ namespace Quantum.Kata.BoundedKnapsack {
         // upon finding i such that a[i] > binaryB[i], AND a[j] = binaryB[j] for all j > i.
         // The X gate flips a[i] to represent whether a[i] and binaryB[i] are equal, to
         // be used as controls for the Toffoli.
-        // Thus, the Toffoli will only flip the target when a[i] = 1, binaryB[i] = 0, and  
+        // Thus, the Toffoli will only flip the target when a[i] = 1, binaryB[i] = 0, and
         // a[j] = 1 for all j > i (meaning a and binaryB have the same digits above i).
 
         for i in D - 1 .. -1 .. 0 {
@@ -83,7 +83,7 @@ namespace Quantum.Kata.BoundedKnapsack {
 
     // Task 1.5. Compare an integer stored in a qubit array with an integer (≤)
     operation CompareQubitArrayLeqThanInt_Reference (a : Qubit[], b : Int, target : Qubit) : Unit is Adj+Ctl {
-        // This operation calculates the opposite of the greater-than comparator from the previous task, 
+        // This operation calculates the opposite of the greater-than comparator from the previous task,
         // so we can just call CompareQubitArrayGreaterThanInt, and then an X gate.
         CompareQubitArrayGreaterThanInt_Reference(a, b, target);
         X(target);
@@ -131,7 +131,7 @@ namespace Quantum.Kata.BoundedKnapsack {
     //////////////////////////////////////////////////////////////////
     // Part II. Bounded Knapsack Problem
     //////////////////////////////////////////////////////////////////
-    
+
 
     // Task 2.1. Read combination from a jagged array of qubits
     operation MeasureCombination_Reference (selectedItemCounts : Qubit[][]) : Int[] {
@@ -145,7 +145,7 @@ namespace Quantum.Kata.BoundedKnapsack {
         // Identify bit lengths of integers bᵢ.
         let bitLengths = Mapped(BitSizeI, b);
         // Partition the array in accordance to these lengths.
-        // Remember to discard the last element in the return of Partitioned, 
+        // Remember to discard the last element in the return of Partitioned,
         // which will be empty, since our partitioning is precise.
         return Most(Partitioned(bitLengths, array));
     }
@@ -178,7 +178,7 @@ namespace Quantum.Kata.BoundedKnapsack {
         }
     }
 
-    
+
     // Task 2.5. Calculate the number of qubits necessary to hold the maximum total value
     function NumBitsTotalValue_Reference (itemValues : Int[], itemCountLimits : Int[]) : Int {
         mutable maxValue = 0;

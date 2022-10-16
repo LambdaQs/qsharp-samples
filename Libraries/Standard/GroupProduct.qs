@@ -183,7 +183,7 @@ namespace Microsoft.Quantum.Synthesis {
     /// ## op
     /// The single-qubit Clifford operator to conjugate by.
     /// ## pauli
-    /// 
+    ///
     ///
     /// # Example
     /// Given `op` and `pauli`, the following are equivalent up to phase:

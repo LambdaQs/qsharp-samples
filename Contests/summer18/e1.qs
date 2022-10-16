@@ -29,13 +29,13 @@ namespace Solution {
                 for (i in 0..N-1) {
                     if (M(x[i]) != Zero) {
                         set r[i] = 1;
-                    } 
+                    }
                 }
 
                 // before releasing the qubits make sure they are all in |0> state
                 ResetAll(qs);
             }
-            return r; 
+            return r;
         }
     }
 }

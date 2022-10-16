@@ -77,7 +77,7 @@ namespace Microsoft.Quantum.Arrays {
 
     /// # Summary
     /// Applies an operation windowing over an input register.
-    /// 
+    ///
     /// # Input
     /// ## windowLen
     /// The size of each window.
@@ -103,7 +103,7 @@ namespace Microsoft.Quantum.Arrays {
 
     /// # Summary
     /// Applies an operation windowing over an input register. The modifier `A` indicates that the single-qubit operation is adjointable.
-    /// 
+    ///
     /// # Input
     /// ## windowLen
     /// The size of each window.
@@ -124,7 +124,7 @@ namespace Microsoft.Quantum.Arrays {
 
     /// # Summary
     /// Applies an operation windowing over an input register. The modifier `C` indicates that the single-qubit operation is controllable.
-    /// 
+    ///
     /// # Input
     /// ## windowLen
     /// The size of each window.
@@ -145,7 +145,7 @@ namespace Microsoft.Quantum.Arrays {
 
     /// # Summary
     /// Applies an operation windowing over an input register. The modifier `CA` indicates that the single-qubit operation is controllable and adjointable.
-    /// 
+    ///
     /// # Input
     /// ## windowLen
     /// The size of each window.

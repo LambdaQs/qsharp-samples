@@ -31,7 +31,7 @@ namespace Microsoft.Quantum.Arrays {
     /// That is, if both arrays have the same length, and all elements are equal
     /// as defined by `equal`.
     ///
-    /// # Example 
+    /// # Example
     /// The following code checks whether different pairs of arrays are equal:
     /// ```qsharp
     /// open Microsoft.Quantum.Arrays;

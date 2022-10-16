@@ -113,5 +113,3 @@ namespace Microsoft.Quantum.Simulation {
     }
 
 }
-
-

@@ -10,13 +10,13 @@ namespace Microsoft.Quantum.Tests {
     open Microsoft.Quantum.Intrinsic;
     open Microsoft.Quantum.Math;
     open Microsoft.Quantum.Synthesis;
-    
+
     internal operation ApplyUnitaryToRegister(matrix: Complex[][], qubits: Qubit[]) : Unit {
         ApplyUnitary(matrix, LittleEndian(qubits));
     }
 
     // Checks that `ApplyUnitary(matrix)` is equivalent to `expected` operation.
-    internal operation CheckOperation(matrix: Complex[][], 
+    internal operation CheckOperation(matrix: Complex[][],
                                       expected: (Qubit[] => Unit is Adj)) : Unit {
         let nQubits = Floor(Lg(IntAsDouble(Length(matrix))));
         AssertOperationsEqualInPlace(nQubits, ApplyUnitaryToRegister(matrix, _), expected);
@@ -116,7 +116,7 @@ namespace Microsoft.Quantum.Tests {
             [Complex(0.5, 0.0), Complex(0.0, -0.5), Complex(-0.5, 0.0), Complex(0.0, 0.5)]];
         CheckOperation(matrix, ApplyQFT);
     }
-    
+
     @Test("QuantumSimulator")
     operation CheckApplyUnitaryAppliesCcnot() : Unit {
         // Matrix for CCNOT(q[0], q[1], q[2]).
@@ -134,11 +134,11 @@ namespace Microsoft.Quantum.Tests {
     }
 
     operation FourControlledGates(qs: Qubit[]) : Unit is Adj {
-        Controlled X([qs[0]], qs[1]); 
-        Controlled T([qs[1]], qs[2]); 
-        Controlled Y([qs[2]], qs[0]);  
-        Controlled H([qs[1]], qs[2]); 
-    }   
+        Controlled X([qs[0]], qs[1]);
+        Controlled T([qs[1]], qs[2]);
+        Controlled Y([qs[2]], qs[0]);
+        Controlled H([qs[1]], qs[2]);
+    }
 
     @Test("QuantumSimulator")
     operation CheckApplyUnitaryAppliesFourControlledGates() : Unit {

@@ -27,13 +27,13 @@ namespace Solution {
                 let m = M(y);
                 if (m == One) {
                     // adjust parity of bit vector r
-                    set r[0] = 1; 
+                    set r[0] = 1;
                 }
 
                 // before releasing the qubits make sure they are all in |0> state
                 ResetAll(qs);
             }
-            return r; 
+            return r;
         }
     }
 }

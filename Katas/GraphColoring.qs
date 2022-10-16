@@ -98,7 +98,7 @@ namespace Quantum.Kata.GraphColoring {
             for ((start, end), conflictQubit) in Zipped(edges, conflictQubits) {
                 // Check that endpoints of the edge have different colors:
                 // apply ColorEqualityOracle_Nbit_Reference oracle; if the colors are the same the result will be 1, indicating a conflict
-                ColorEqualityOracle_Nbit_Reference(colorsRegister[start * 2 .. start * 2 + 1], 
+                ColorEqualityOracle_Nbit_Reference(colorsRegister[start * 2 .. start * 2 + 1],
                                                     colorsRegister[end * 2 .. end * 2 + 1], conflictQubit);
             }
         } apply {
@@ -154,11 +154,11 @@ namespace Quantum.Kata.GraphColoring {
         }
         // We put the target back into |0⟩ so we can return it
     }
-    
+
     operation GroversAlgorithm_Loop (register : Qubit[], oracle : ((Qubit[], Qubit) => Unit is Adj), iterations : Int) : Unit {
         let phaseOracle = OracleConverterImpl(oracle, _);
         ApplyToEach(H, register);
-            
+
         for _ in 1 .. iterations {
             phaseOracle(register);
             within {
@@ -226,7 +226,7 @@ namespace Quantum.Kata.GraphColoring {
             // Mark all neighbors which are of the SAME color.
             for ((start, end), conflictQubit) in Zipped(connectingEdges, conflictQubits) {
                 ColorEqualityOracle_Nbit_Reference(colorsRegister[start * 2 .. start * 2 + 1],
-                                                   colorsRegister[end * 2 .. end * 2 + 1], 
+                                                   colorsRegister[end * 2 .. end * 2 + 1],
                                                    conflictQubit);
             }
         } apply {
@@ -306,7 +306,7 @@ namespace Quantum.Kata.GraphColoring {
         let trianglesList = AdjacencyMatrixAsTrianglesList_Reference(V, adjacencyMatrix);
 
         for (v1, v2, v3) in trianglesList {
-            if (colors[adjacencyMatrix[v1][v2]] == colors[adjacencyMatrix[v1][v3]] and 
+            if (colors[adjacencyMatrix[v1][v2]] == colors[adjacencyMatrix[v1][v3]] and
                 colors[adjacencyMatrix[v1][v2]] == colors[adjacencyMatrix[v2][v3]]) {
                 return false;
             }
@@ -329,9 +329,9 @@ namespace Quantum.Kata.GraphColoring {
     // Task 4.5. Oracle for verifying triangle-free edge coloring
     //           (f(x) = 1 if the graph edge coloring is triangle-free)
     operation TriangleFreeColoringOracle_Reference (
-        V : Int, 
-        edges : (Int, Int)[], 
-        colorsRegister : Qubit[], 
+        V : Int,
+        edges : (Int, Int)[],
+        colorsRegister : Qubit[],
         target : Qubit
     ) : Unit is Adj+Ctl {
         // Construct adjacency matrix of the graph
@@ -347,7 +347,7 @@ namespace Quantum.Kata.GraphColoring {
                 // For each triangle, form an array of qubits that holds its edge colors
                 let (v1, v2, v3) = trianglesList[i];
                 let edgeColors = [colorsRegister[adjacencyMatrix[v1][v2]],
-                                  colorsRegister[adjacencyMatrix[v1][v3]], 
+                                  colorsRegister[adjacencyMatrix[v1][v3]],
                                   colorsRegister[adjacencyMatrix[v2][v3]]];
                 ValidTriangleOracle_Reference(edgeColors, aux[i]);
             }

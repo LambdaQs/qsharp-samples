@@ -8,7 +8,7 @@
 //////////////////////////////////////////////////////////////////////
 
 namespace Quantum.Kata.KeyDistribution {
-    
+
     open Microsoft.Quantum.Arrays;
     open Microsoft.Quantum.Measurement;
     open Microsoft.Quantum.Canon;
@@ -17,12 +17,12 @@ namespace Quantum.Kata.KeyDistribution {
     open Microsoft.Quantum.Convert;
     open Microsoft.Quantum.Math;
     open Microsoft.Quantum.Random;
-    
-    
+
+
     //////////////////////////////////////////////////////////////////
     // Part I. Preparation
     //////////////////////////////////////////////////////////////////
-    
+
     // Task 1.1. Diagonal polarization
     operation DiagonalBasis_Reference (qs : Qubit[]) : Unit is Adj {
         ApplyToEachA(H, qs);
@@ -105,7 +105,7 @@ namespace Quantum.Kata.KeyDistribution {
     }
 
 
-    // Task 2.6. Putting it all together 
+    // Task 2.6. Putting it all together
     operation T26_BB84Protocol_Reference () : Unit {
         let threshold = 1;
 
@@ -113,10 +113,10 @@ namespace Quantum.Kata.KeyDistribution {
         // 1. Choose random basis and bits to encode
         let basesAlice = RandomArray_Reference(Length(qs));
         let bitsAlice = RandomArray_Reference(Length(qs));
-        
+
         // 2. Alice prepares her qubits
         PrepareAlicesQubits_Reference(qs, basesAlice, bitsAlice);
-        
+
         // 3. Bob chooses random basis to measure in
         let basesBob = RandomArray_Reference(Length(qs));
 
@@ -143,7 +143,7 @@ namespace Quantum.Kata.KeyDistribution {
         return ResultAsBool(Measure([basis ? PauliX | PauliZ], [q]));
     }
 
-    
+
     // Task 3.2. Catch the eavesdropper
     operation T32_BB84ProtocolWithEavesdropper_Reference () : Unit {
         let threshold = 1;
@@ -152,10 +152,10 @@ namespace Quantum.Kata.KeyDistribution {
         // 1. Choose random basis and bits to encode
         let basesAlice = RandomArray_Reference(Length(qs));
         let bitsAlice = RandomArray_Reference(Length(qs));
-        
+
         // 2. Alice prepares her qubits
         PrepareAlicesQubits_Reference(qs, basesAlice, bitsAlice);
-        
+
         // Eve eavesdrops on all qubits, guessing the basis at random
         for q in qs {
             let n = Eavesdrop_Reference(q, DrawRandomBool(0.5));

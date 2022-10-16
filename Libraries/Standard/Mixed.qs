@@ -40,7 +40,7 @@ namespace Microsoft.Quantum.Preparation {
     /// # Summary
     /// Given a register, prepares that register in the maximally mixed state.
     ///
-    /// The register is prepared in the $\boldone / 2^N$ state by applying the 
+    /// The register is prepared in the $\boldone / 2^N$ state by applying the
     /// complete depolarizing
     /// channel to each qubit, where $N$ is the length of the register.
     ///

@@ -230,7 +230,7 @@ namespace Microsoft.Quantum.Canon {
 
     // #endregion
 
-    
+
     // #region Adjoint
 
     /// # Summary

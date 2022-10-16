@@ -13,7 +13,7 @@ namespace Solution {
                     X(x[i]);
                     CNOT(x[i], y);
                     X(x[i]);
-                } 
+                }
             }
         }
     }

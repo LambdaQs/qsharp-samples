@@ -167,7 +167,7 @@ namespace Microsoft.Quantum.Preparation {
         PrepareArbitraryStateCP(coefficients, qubits);
     }
 
-    
+
     /// # Summary
     /// Returns an operation that prepares a specific quantum state.
     ///
@@ -218,7 +218,7 @@ namespace Microsoft.Quantum.Preparation {
         return PrepareArbitraryStateCP(coefficients, _);
     }
 
-    
+
     /// # Summary
     /// Returns an operation that prepares the given quantum state.
     ///

@@ -212,5 +212,3 @@ namespace Microsoft.Quantum.Canon {
     }
 
 }
-
-

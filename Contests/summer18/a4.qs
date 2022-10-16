@@ -26,7 +26,7 @@ namespace Solution {
                     // unentangle here from the rest of the qubits
                     for (i in K..N-1) {
                         CNOT(qs[i], here);
-                    } 
+                    }
                 }
             }
         }

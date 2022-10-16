@@ -296,7 +296,7 @@ namespace Quantum.Kata.Measurements {
         let m2 = M(qs[1]) == Zero ? 0 | 1;
         return m2 * 2 + m1;
     }
-    
+
 
     // Task 1.13. Distinguish four orthogonal 2-qubit states
     // Input: two qubits (stored in an array) which are guaranteed to be in one of the four orthogonal states:

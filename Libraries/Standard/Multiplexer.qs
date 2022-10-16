@@ -409,10 +409,10 @@ namespace Microsoft.Quantum.Canon {
                 within {
                     X(tail);
                 } apply {
-                    Controlled MultiplexOperations([tail], (parts[0], LittleEndian(most), target)); 
+                    Controlled MultiplexOperations([tail], (parts[0], LittleEndian(most), target));
                 }
 
-                Controlled MultiplexOperations([tail], (parts[1], LittleEndian(most), target)); 
+                Controlled MultiplexOperations([tail], (parts[1], LittleEndian(most), target));
             }
         }
 

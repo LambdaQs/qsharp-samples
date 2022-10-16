@@ -55,14 +55,14 @@ namespace Microsoft.Quantum.Canon {
         {
             ApplyToSubregister(op, idxs, target);
         }
-        
+
         adjoint (...)
         {
             ApplyToSubregister(Adjoint op, idxs, target);
         }
     }
-    
-    
+
+
     /// # Summary
     /// Applies an operation to a subregister of a register, with qubits
     /// specified by an array of their indices.
@@ -84,15 +84,15 @@ namespace Microsoft.Quantum.Canon {
         {
             ApplyToSubregister(op, idxs, target);
         }
-        
+
         controlled (controls, ...)
         {
             let cop = Controlled op;
             ApplyToSubregister(cop(controls, _), idxs, target);
         }
     }
-    
-    
+
+
     /// # Summary
     /// Applies an operation to a subregister of a register, with qubits
     /// specified by an array of their indices.
@@ -114,26 +114,26 @@ namespace Microsoft.Quantum.Canon {
         {
             ApplyToSubregister(op, idxs, target);
         }
-        
+
         adjoint (...)
         {
             ApplyToSubregister(Adjoint op, idxs, target);
         }
-        
+
         controlled (controls, ...)
         {
             let cop = Controlled op;
             ApplyToSubregister(cop(controls, _), idxs, target);
         }
-        
+
         controlled adjoint (controls, ...)
         {
             let cop = Controlled (Adjoint op);
             ApplyToSubregister(cop(controls, _), idxs, target);
         }
     }
-    
-    
+
+
     /// # Summary
     /// Restricts an operation to an array of indices of a register, i.e., a subregister.
     ///
@@ -150,8 +150,8 @@ namespace Microsoft.Quantum.Canon {
     function RestrictedToSubregister (op : (Qubit[] => Unit), idxs : Int[]) : (Qubit[] => Unit) {
         return ApplyToSubregister(op, idxs, _);
     }
-    
-    
+
+
     /// # Summary
     /// Restricts an operation to an array of indices of a register, i.e., a subregister.
     /// The modifier `A` indicates that the operation is adjointable.
@@ -168,8 +168,8 @@ namespace Microsoft.Quantum.Canon {
     {
         return ApplyToSubregisterA(op, idxs, _);
     }
-    
-    
+
+
     /// # Summary
     /// Restricts an operation to an array of indices of a register, i.e., a subregister.
     /// The modifier `C` indicates that the operation is controllable.
@@ -186,8 +186,8 @@ namespace Microsoft.Quantum.Canon {
     {
         return ApplyToSubregisterC(op, idxs, _);
     }
-    
-    
+
+
     /// # Summary
     /// Restricts an operation to an array of indices of a register, i.e., a subregister.
     /// The modifier `CA` indicates that the operation is controllable and adjointable.
@@ -204,7 +204,5 @@ namespace Microsoft.Quantum.Canon {
     {
         return ApplyToSubregisterCA(op, idxs, _);
     }
-    
+
 }
-
-

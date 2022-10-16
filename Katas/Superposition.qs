@@ -53,8 +53,8 @@ namespace Quantum.Kata.Superposition {
     // ------------------------------------------------------
     // Task 1.4. Superposition of basis vectors with phase flip
     operation AllBasisVectorWithPhaseFlip_TwoQubits_Reference (qs : Qubit[]) : Unit is Adj {
-        
-        // We create the same state as the previous task. 
+
+        // We create the same state as the previous task.
         AllBasisVectors_TwoQubits_Reference(qs);
 
         // Lastly, we use a controlled Z gate to phase flip the |11⟩ state.
@@ -300,7 +300,7 @@ namespace Quantum.Kata.Superposition {
         // Calculate the parity of states using CNOTs
         ApplyToEach(CNOT(_, anc), qs);
         let res = MResetZ(anc);
-        // Now, if we got measurement result that matches parity, we're good; 
+        // Now, if we got measurement result that matches parity, we're good;
         // otherwise we can apply X to any one qubit to get our result!
         if ((res == Zero ? 0 | 1) != parity) {
             X(qs[0]);
@@ -372,7 +372,7 @@ namespace Quantum.Kata.Superposition {
 
         // First create (|00⟩ + |01⟩ + |10⟩) / sqrt(3) state
         ThreeStates_TwoQubits_Reference(qs);
-        
+
         R1(4.0 * PI() / 3.0, qs[0]);
         R1(2.0 * PI() / 3.0, qs[1]);
     }

@@ -14,9 +14,9 @@ namespace Microsoft.Quantum.Arrays {
     /// The construction of the subarray is a based on generating a new, deep
     /// copy of the given array as opposed to maintaining references.
     ///
-    /// If `indices` contains repeated elements, the corresponding elements 
+    /// If `indices` contains repeated elements, the corresponding elements
     /// of `array` will likewise be repeated.
-    /// If all elements of `indices` are unique, this function will return 
+    /// If all elements of `indices` are unique, this function will return
     /// a subset of `array` if `Length(indices) < Length(array)`, or
     /// a permutation of `array` if `indices` and `array` are of the same length.
     ///
@@ -33,9 +33,9 @@ namespace Microsoft.Quantum.Arrays {
     /// # Output
     /// An array `out` of elements whose indices correspond to the subarray,
     /// such that `out[idx] == array[indices[idx]]`.
-    /// 
+    ///
     /// # Example
-    /// 
+    ///
     /// ```qsharp
     /// open Microsoft.Quantum.Arrays;
     ///

@@ -82,5 +82,3 @@ namespace Microsoft.Quantum.Arithmetic {
     }
 
 }
-
-

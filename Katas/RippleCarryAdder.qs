@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT license.
 
 //////////////////////////////////////////////////////////////////////
@@ -9,17 +9,17 @@
 //////////////////////////////////////////////////////////////////////
 
 namespace Quantum.Kata.RippleCarryAdder {
-    
+
     open Microsoft.Quantum.Measurement;
     open Microsoft.Quantum.Arrays;
     open Microsoft.Quantum.Intrinsic;
     open Microsoft.Quantum.Canon;
-    
-    
+
+
     //////////////////////////////////////////////////////////////////
     // Part I. Simple adder outputting to empty Qubits
     //////////////////////////////////////////////////////////////////
-    
+
     // Task 1.1. Summation of two bits
     operation LowestBitSum_Reference (a : Qubit, b : Qubit, sum : Qubit) : Unit is Adj {
         CNOT(a, sum);
@@ -163,7 +163,7 @@ namespace Quantum.Kata.RippleCarryAdder {
         // Set up the carry bits
         LowestBitCarry_Reference(a[0], b[0], internalCarry);
         HighBitCarry_Reference(a[1], b[1], internalCarry, carry);
-            
+
         // Calculate sums and clean up the ancilla
         HighBitSumInPlace_Reference(a[1], b[1], internalCarry);
         Adjoint LowestBitCarry_Reference(a[0], b[0], internalCarry);
@@ -192,7 +192,7 @@ namespace Quantum.Kata.RippleCarryAdder {
         LowestBitSumInPlace_Reference(a[0], b[0]);
     }
 
-    
+
     //////////////////////////////////////////////////////////////////
     // Part III*. Improved in-place adder
     //////////////////////////////////////////////////////////////////
@@ -204,7 +204,7 @@ namespace Quantum.Kata.RippleCarryAdder {
         CCNOT(b, c, a);
     }
 
-    
+
     // Task 3.2. UnMajority and Add gate
     operation UnMajorityAdd_Reference (a : Qubit, b : Qubit, c : Qubit) : Unit is Adj {
         CCNOT(b, c, a);
@@ -221,7 +221,7 @@ namespace Quantum.Kata.RippleCarryAdder {
         UnMajorityAdd_Reference(a, b, tempCarry);
     }
 
-    
+
     // Task 3.4. Two-bit majority-UMA adder
     operation TwoBitMajUmaAdder_Reference (a : Qubit[], b : Qubit[], carry : Qubit) : Unit is Adj {
         use tempCarry = Qubit();
@@ -237,11 +237,11 @@ namespace Quantum.Kata.RippleCarryAdder {
         UnMajorityAdd_Reference(a[0], b[0], tempCarry);
     }
 
-    
+
     // Task 3.5. N-bit majority-UMA adder
     operation ArbitraryMajUmaAdder_Reference (a : Qubit[], b : Qubit[], carry : Qubit) : Unit is Adj {
         let N = Length(a);
-        
+
         use tempCarry = Qubit();
         let carries = [tempCarry] + a;
 
@@ -276,7 +276,7 @@ namespace Quantum.Kata.RippleCarryAdder {
         // transform 2ᴺ - 1 - (b - a) into b - a
         ApplyToEachA(X, b);
     }
-    
+
     //////////////////////////////////////////////////////////////////
     // Part V. Addition and subtraction modulo 2ᴺ
     //////////////////////////////////////////////////////////////////
@@ -286,7 +286,7 @@ namespace Quantum.Kata.RippleCarryAdder {
         // Modification of challenge solution of task 1.7 (last carry bit isn't calculated).
         // Sum qubits are used to store the carry bits, and the sum is calculated as they get cleaned up.
         // (It's also possible to use a similar modification of regular solution of task 1.7.)
-        
+
         let N = Length(a);
 
         // Calculate carry bits and Store them in Sum
@@ -295,7 +295,7 @@ namespace Quantum.Kata.RippleCarryAdder {
             HighBitCarry_Reference(a[i], b[i], sum[i - 1], sum[i]);
         }
         // No need to calculated last (N+1)th carry bit, as addition is modulo 2ᴺ.
-        
+
         // Clean sum qubits (uncompute carries after they aren't needed) and compute sum
         for i in N-1 .. -1 .. 1 {
             Adjoint HighBitCarry_Reference(a[i], b[i], sum[i - 1], sum[i]); // Restore sum[i] to state 0
@@ -304,13 +304,13 @@ namespace Quantum.Kata.RippleCarryAdder {
         Adjoint LowestBitCarry_Reference(a[0], b[0], sum[0]); // Restore sum[0] to state 0
         LowestBitSum_Reference(a[0], b[0], sum[0]); // Compute sum[i]
     }
-    
+
 
     // Task 5.2. Two's Complement
     operation TwosComplement_Reference (a : Qubit[]) : Unit is Adj {
         // Transform a into 2ᴺ - 1 - a ("one's complement")
         ApplyToEachA(X, a);
-        
+
         // Increment mod 2ᴺ.
         // Since we are incrementing by 1, we flip the next most significant bit only if all previous bits are 0.
         for prefix in Prefixes(a) {
@@ -322,34 +322,34 @@ namespace Quantum.Kata.RippleCarryAdder {
     // Task 5.3. Subtractor Modulo 2ᴺ
     operation SubtractorModuloN_Reference (a : Qubit[], b : Qubit[], diff : Qubit[]) : Unit is Adj {
         within {
-            // Transform a into its Two's Complement 2ᴺ - a 
+            // Transform a into its Two's Complement 2ᴺ - a
             TwosComplement_Reference(a);
         } apply {
-            // Add 2ᴺ - a and b to get (2ᴺ + b - a) mod 2ᴺ = (b-a) mod 2ᴺ 
+            // Add 2ᴺ - a and b to get (2ᴺ + b - a) mod 2ᴺ = (b-a) mod 2ᴺ
             AdderModuloN_Reference(a, b, diff);
         }
     }
-    
+
 
     // Task 5.4. In-place adder modulo 2ᴺ
     operation InPlaceAdderModuloN_Reference (a : Qubit[], b : Qubit[]) : Unit is Adj {
-        // Modification of task 3.5 solution (last carry bit isn't calculated)    
+        // Modification of task 3.5 solution (last carry bit isn't calculated)
         use tempCarry = Qubit();
         let carries = [tempCarry] + a;
 
         // Compute carry bits
         ApplyToEachA(Majority_Reference, Zipped3(a, b, carries));
-            
+
         // No need to save last (N+1)th carry bit
-            
+
         // Restore inputs and ancilla, compute sum
         ApplyToEachA(UnMajorityAdd_Reference, Reversed(Zipped3(a, b, carries)));
     }
-    
+
 
     // Task 5.5. In-place subtractor modulo 2ᴺ
     operation InPlaceSubtractorModuloN_Reference (a : Qubit[], b : Qubit[]) : Unit is Adj {
-        // Notice that Task 5.4 is actually the Adjoint of Task 5.3. 
+        // Notice that Task 5.4 is actually the Adjoint of Task 5.3.
         // Task 5.3 maps (a,b) -> (a,(a+b)mod2ᴺ). Let c = (a+b)mod2ᴺ
         // Task 5.4 maps (a,b) -> (a,(b-a)mod2ᴺ). So Task 5.4 will maps (a,c) -> (a,(c-a)mod2ᴺ) = (a,((a+b)mod2ᴺ-a)mod2ᴺ) = (a,b).
         Adjoint InPlaceAdderModuloN_Reference(a, b);

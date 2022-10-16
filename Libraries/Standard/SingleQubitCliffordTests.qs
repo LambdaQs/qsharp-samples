@@ -41,7 +41,7 @@ namespace Microsoft.Quantum.Tests {
         }
     }
 
-    
+
     @Test("QuantumSimulator")
     function TimesInverseIsIdentity() : Unit {
         for e in 0..2 {

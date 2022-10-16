@@ -23,7 +23,7 @@ namespace Microsoft.Quantum.Arrays {
 
     @Test("QuantumSimulator")
     function SortedIntsAreSorted() : Unit {
-        Fact(IsSorted(LessThanOrEqualI, 
+        Fact(IsSorted(LessThanOrEqualI,
             Sorted(LessThanOrEqualI, [100, 10, 3])),
             "Sorted(<=, [100, 10, 3]) was marked as unsorted."
         );
@@ -31,7 +31,7 @@ namespace Microsoft.Quantum.Arrays {
 
     @Test("QuantumSimulator")
     function SortedDoublesAreSorted() : Unit {
-        Fact(IsSorted(LessThanOrEqualD, 
+        Fact(IsSorted(LessThanOrEqualD,
             Sorted(LessThanOrEqualD, [100.0, 10.1, 3.14])),
             "Sorted(<=, [100.0, 10.1, 3.14]) was marked as unsorted."
         );

@@ -437,5 +437,3 @@ namespace Microsoft.Quantum.Tests {
     }
 
 }
-
-

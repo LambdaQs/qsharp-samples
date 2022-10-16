@@ -47,7 +47,7 @@ namespace Microsoft.Quantum.Chemistry.JordanWigner {
         return zString;
     }
 
-    // Identical to `_ComputeJordanWignerBitString`, except with the map  
+    // Identical to `_ComputeJordanWignerBitString`, except with the map
     // false -> PauliI and true -> PauliZ
     function _ComputeJordanWignerPauliZString(nFermions: Int,  idxFermions: Int[]) : Pauli[] {
         let bitString = _ComputeJordanWignerBitString(nFermions, idxFermions);
@@ -129,7 +129,7 @@ namespace Microsoft.Quantum.Chemistry.JordanWigner {
             Exp(pauliString, globalSign * sign * angle, qubits);
         }
     }
-    
+
     function _JordanWignerClusterOperatorPQRSTermSigns(indices: Int[]) : (Int[], Double[], Double) {
         let p = indices[0];
         let q = indices[1];
@@ -262,6 +262,5 @@ namespace Microsoft.Quantum.Chemistry.JordanWigner {
     function JordanWignerClusterOperatorEvolutionSet() : EvolutionSet {
         return EvolutionSet(_JordanWignerClusterOperatorFunction);
     }
-    
-}
 
+}

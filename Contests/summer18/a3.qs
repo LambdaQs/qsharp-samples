@@ -7,7 +7,7 @@ namespace Solution {
         for (i in 0 .. Length(bits1)-1) {
             if (bits1[i] != bits0[i] && firstDiff == -1) {
                 set firstDiff = i;
-            } 
+            }
         }
         return firstDiff;
     }
@@ -33,7 +33,7 @@ namespace Solution {
                         CNOT(qs[firstDiff], qs[i]);
                         if (bits0[i] != bits0[firstDiff]) {
                             X(qs[i]);
-                        } 
+                        }
                     }
                 }
             }

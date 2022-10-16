@@ -12,8 +12,8 @@ namespace Solution {
             for (i in 1..Length(qs)-1) {
                 if (bits[i]) {
                     CNOT(qs[0], qs[i]);
-                } 
+                }
             }
-        } 
+        }
     }
 }

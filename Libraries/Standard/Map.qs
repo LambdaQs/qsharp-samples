@@ -242,4 +242,3 @@ namespace Microsoft.Quantum.Arrays {
     }
 
 }
-

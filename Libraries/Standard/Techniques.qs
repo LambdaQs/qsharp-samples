@@ -40,8 +40,8 @@ namespace Microsoft.Quantum.Simulation {
         let evolutionSchedule = EvolutionSchedule(evolutionSetStart, generatorSystemTimeDependent!);
         return timeDependentSimulationAlgorithm!(interpolationTime, evolutionSchedule, _);
     }
-    
-    
+
+
     /// # Summary
     /// Performs state preparation by applying a
     /// `statePrepUnitary` on the input state, followed by adiabatic state
@@ -80,7 +80,7 @@ namespace Microsoft.Quantum.Simulation {
 
     /// # Summary
     /// Performs state preparation by applying a
-    /// `statePrepUnitary` on an automatically allocated input state, 
+    /// `statePrepUnitary` on an automatically allocated input state,
 	/// followed by adiabatic state preparation using a
     /// `adiabaticUnitary`, and finally phase estimation with respect to
     /// `qpeUnitary`on the resulting state using a `phaseEstAlgorithm`.

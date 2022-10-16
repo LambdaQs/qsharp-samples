@@ -11,11 +11,11 @@ namespace Microsoft.Quantum.Preparation {
     open Microsoft.Quantum.Math;
 
     /// # Summary
-    /// Returns an operation that prepares a a purification of a given mixed state. 
-    /// A "purified mixed state" refers to states of the form |ψ⟩ = Σᵢ √𝑝ᵢ |𝑖⟩ |garbageᵢ⟩ specified by a vector of 
-    /// coefficients {𝑝ᵢ}. States of this form can be reduced to mixed states ρ ≔ 𝑝ᵢ |𝑖⟩⟨𝑖| by tracing over the "garbage" 
+    /// Returns an operation that prepares a a purification of a given mixed state.
+    /// A "purified mixed state" refers to states of the form |ψ⟩ = Σᵢ √𝑝ᵢ |𝑖⟩ |garbageᵢ⟩ specified by a vector of
+    /// coefficients {𝑝ᵢ}. States of this form can be reduced to mixed states ρ ≔ 𝑝ᵢ |𝑖⟩⟨𝑖| by tracing over the "garbage"
     /// register (that is, a mixed state that is diagonal in the computational basis).
-    /// 
+    ///
     /// See https://arxiv.org/pdf/1805.03662.pdf?page=15 for further discussion.
     ///
     /// # Description
@@ -111,7 +111,7 @@ namespace Microsoft.Quantum.Preparation {
     /// # Summary
     /// Returns an operation that prepares a a purification of a given mixed
     /// state, entangled with a register representing a given collection of data.
-    /// A "purified mixed state with data" refers to a state of the form Σᵢ √𝑝ᵢ |𝑖⟩ |𝑥ᵢ⟩ |garbageᵢ⟩, 
+    /// A "purified mixed state with data" refers to a state of the form Σᵢ √𝑝ᵢ |𝑖⟩ |𝑥ᵢ⟩ |garbageᵢ⟩,
     /// where each 𝑥ᵢ is a bitstring encoding additional data associated with the register |𝑖⟩.
     ///
     /// See https://arxiv.org/pdf/1805.03662.pdf?page=15 for further discussion.
@@ -124,30 +124,30 @@ namespace Microsoft.Quantum.Preparation {
     /// bitstring $\vec{x}_j$ associated with each coefficient, this
     /// function returns an operation that uses the Quantum ROM technique to
     /// prepare an approximation
-    /// 
+    ///
     /// $$
     /// \begin{align}
     ///     \tilde\rho = \sum_{j = 0}^{N - 1} p_j \ket{j}\bra{j} \otimes \ket{\vec{x}_j}\bra{\vec{x}_j}
     /// \end{align}
     /// $$
-    /// 
+    ///
     /// of the mixed state
-    /// 
+    ///
     /// $$
     /// \begin{align}
     ///     \rho = \sum_{j = 0}^{N-1} \frac{|\alpha_j|}{\sum_k |\alpha_k|} \ket{j}\bra{j} \otimes \ket{\vec{x}_j}\bra{\vec{x}_j},
     /// \end{align}
     /// $$
-    /// 
+    ///
     /// where each $p_j$ is an approximation to the given coefficient $\alpha_j$
     /// such that
-    /// 
+    ///
     /// $$
     /// \begin{align}
     ///     \left| p_j - \frac{ |\alpha_j| }{ \sum_k |\alpha_k| } \right| \le \frac{\epsilon}{N}
     /// \end{align}
     /// $$
-    /// 
+    ///
     /// for each $j$.
     ///
     /// When passed an index register and a register of garbage qubits,

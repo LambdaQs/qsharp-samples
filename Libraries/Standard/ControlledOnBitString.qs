@@ -160,4 +160,3 @@ namespace Microsoft.Quantum.Canon {
     }
 
 }
-

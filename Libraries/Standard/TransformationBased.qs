@@ -135,7 +135,7 @@ namespace Microsoft.Quantum.Synthesis {
     /// # Description
     /// This procedure implements the unidirectional transformation based
     /// synthesis approach.  Input is a permutation $\pi$ over $2^n$ elements
-    /// $\{0, \dots, 2^n-1\}$, which represents an $n$-variable reversible Boolean function. 
+    /// $\{0, \dots, 2^n-1\}$, which represents an $n$-variable reversible Boolean function.
     /// The algorithm performs iteratively the following steps:
     ///
     /// 1. Find smallest $x$ such that $x \ne \pi(x) = y$.
