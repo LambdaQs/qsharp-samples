@@ -23,6 +23,20 @@ target = "Libraries/Standard"
 for filename in glob.iglob(directory + '**/*.qs', recursive=True):
     shutil.copyfile(filename, os.path.join(target, Path(filename).stem + ".qs"))
 
+# Runtime
+directory = "submodules/qsharp-runtime/src/Simulation/QSharpFoundation/"
+target = "Runtime/QSharpFoundation"
+for filename in glob.iglob(directory + '**/*.qs', recursive=True):
+    shutil.copyfile(filename, os.path.join(target, Path(filename).stem + ".qs"))
+directory = "submodules/qsharp-runtime/src/Simulation/TargetDefinitions/Intrinsic"
+target = "Runtime/TargetDefinitions"
+for filename in glob.iglob(directory + '**/*.qs', recursive=True):
+    shutil.copyfile(filename, os.path.join(target, Path(filename).stem + ".qs"))
+directory = "submodules/qsharp-runtime/src/Simulation/TargetDefinitions/Decompositions"
+target = "Runtime/TargetDefinitions"
+for filename in glob.iglob(directory + '**/*.qs', recursive=True):
+    shutil.copyfile(filename, os.path.join(target, Path(filename).stem + ".qs"))
+
 # Katas
 directory = "submodules/QuantumKatas"
 target = "Katas"
